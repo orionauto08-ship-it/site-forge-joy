@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/site/Layout";
+import { Faq } from "@/components/site/Faq";
 import diamondImg from "@/assets/diamond.jpg";
 import { ArrowRight, Award, FlaskConical, Globe2, ShieldCheck } from "lucide-react";
 
@@ -14,9 +15,32 @@ export const Route = createFileRoute("/diamond-protech")({
   component: DiamondPage,
 });
 
-const products = [
-  "Diamond Body Kit", "Diamond Body 36 Kit", "Diamond Wrap Kit", "Diamond Glass Kit",
-  "Diamond Wheels Kit", "Diamond Maintenance Kit", "Diamond Interior Kit", "Diamond Leather Kit",
+const products: { name: string; price: string; tag?: string }[] = [
+  { name: "Diamond Body Kit", price: "672 р.", tag: "До 18 месяцев защиты" },
+  { name: "Diamond Body 36 Kit", price: "744 р.", tag: "Усиленная формула" },
+  { name: "Diamond Wrap Kit", price: "708 р.", tag: "Для плёнок" },
+  { name: "Diamond Glass Kit", price: "552 р.", tag: "Гидрофобность стёкол" },
+  { name: "Diamond Wheels Kit", price: "624 р.", tag: "Защита дисков" },
+  { name: "Diamond Maintenance Kit", price: "432 р.", tag: "Уход и поддержание" },
+  { name: "Diamond Interior Kit", price: "552 р.", tag: "Текстиль и пластик" },
+  { name: "Diamond Leather Kit", price: "624 р.", tag: "Защита кожи" },
+];
+
+const trustList = [
+  "Устойчивость к ультрафиолетовому излучению",
+  "Устойчивость к химическим средствам",
+  "Устойчивость к древесной смоле, пыльце и птичьему помёту",
+  "Устойчивость к коррозии и окислению",
+  "Олеофобные и грязеотталкивающие свойства",
+  "Устойчивость к царапинам",
+];
+
+const faq = [
+  { q: "Сколько держится покрытие?", a: "До 18 месяцев при правильном уходе." },
+  { q: "Для каких поверхностей подходят продукты?", a: "Кузов, стёкла, колёса, салон, кожа, винил." },
+  { q: "Есть ли готовые комплекты?", a: "Да: Diamond Body KIT, Diamond Glass KIT, Diamond Wheels KIT, Diamond Maintenance KIT и др." },
+  { q: "Нужна ли подготовка поверхности?", a: "Да, рекомендуется использовать составы для подготовки перед нанесением." },
+  { q: "Есть ли скидки для студий?", a: "Да, обсуждаем индивидуальные условия при регулярных закупках." },
 ];
 
 function DiamondPage() {
