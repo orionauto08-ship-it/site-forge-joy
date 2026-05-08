@@ -110,35 +110,71 @@ function DiamondPage() {
         </div>
       </section>
 
+      {/* Trust list */}
+      <section className="container-page mt-16">
+        <div className="rounded-3xl surface-cream p-8 md:p-12">
+          <div className="text-xs uppercase tracking-widest text-brown font-semibold">Все продукты Diamond ProTech имеют</div>
+          <h2 className="mt-3 text-2xl md:text-3xl font-display font-bold">Шесть стандартов защиты</h2>
+          <ul className="mt-6 grid sm:grid-cols-2 gap-3">
+            {trustList.map((t) => (
+              <li key={t} className="flex items-start gap-3 text-foreground/85">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-forest shrink-0" />
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* Catalog */}
       <section id="catalog" className="container-page mt-16">
-        <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Популярные продукты</h2>
+        <div className="flex items-end justify-between mb-6 gap-4 flex-wrap">
+          <h2 className="text-3xl md:text-4xl font-display font-bold">Популярные продукты</h2>
+          <span className="text-sm text-muted-foreground">Защита, которой доверяют профессионалы</span>
+        </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {products.map((p) => (
-            <div key={p} className="rounded-2xl bg-card border border-border p-6 flex flex-col">
+            <div key={p.name} className="rounded-2xl bg-card border border-border p-6 flex flex-col">
               <div className="aspect-square rounded-xl surface-cream mb-4 flex items-center justify-center text-brown font-display font-bold text-xl">DP</div>
-              <div className="font-display font-semibold">{p}</div>
-              <div className="text-sm text-muted-foreground mt-1">Кит для самостоятельного нанесения</div>
+              <div className="font-display font-semibold">{p.name}</div>
+              <div className="text-xs text-muted-foreground mt-1">{p.tag}</div>
+              <div className="mt-3 font-display font-bold text-xl">{p.price}</div>
               <div className="mt-4 flex gap-2">
                 <button className="flex-1 h-10 rounded-lg surface-forest text-sm font-semibold">В корзину</button>
-                <button className="h-10 px-3 rounded-lg border border-border text-sm font-semibold">Видео</button>
+                <button className="h-10 px-3 rounded-lg border border-border text-sm font-semibold">Подробнее</button>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Hypothesis */}
+      {/* Audiences */}
       <section className="container-page mt-16 grid md:grid-cols-2 gap-4">
         <div className="rounded-2xl surface-cream p-8">
           <div className="text-xs uppercase tracking-widest text-brown font-semibold">Для физлиц</div>
           <h3 className="mt-2 font-display font-bold text-2xl">Купить кит и нанести самому</h3>
-          <p className="mt-2 text-foreground/75">К каждому продукту — короткая видео-инструкция.</p>
+          <p className="mt-2 text-foreground/75">К каждому продукту — короткая видео-инструкция и составы для подготовки поверхности.</p>
         </div>
         <div className="rounded-2xl surface-brown p-8">
-          <div className="text-xs uppercase tracking-widest font-semibold text-sand">Для студий</div>
+          <div className="text-xs uppercase tracking-widest font-semibold text-sand">Для детейлинг-студий</div>
           <h3 className="mt-2 font-display font-bold text-2xl">Получить условия для студии</h3>
-          <p className="mt-2 text-brown-foreground/85">Прямые поставки, PRO-линейка, обучение.</p>
+          <p className="mt-2 text-brown-foreground/85">Прямые поставки, PRO-линейка с защитой до 10 лет, обучение и сертификация.</p>
+        </div>
+      </section>
+
+      <Faq items={faq} />
+
+      {/* Final CTA */}
+      <section className="container-page mt-16">
+        <div className="rounded-3xl surface-sand p-8 md:p-12 flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
+          <div>
+            <h3 className="text-2xl md:text-3xl font-display font-bold">Готовы защитить автомобиль?</h3>
+            <p className="text-foreground/75 mt-1">Подберём решение под задачу и формат применения.</p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <a href="#catalog" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold">Смотреть каталог</a>
+            <Link to="/contacts" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background border border-border font-semibold">Получить консультацию</Link>
+          </div>
         </div>
       </section>
     </Layout>
