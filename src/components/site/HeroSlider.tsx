@@ -96,8 +96,8 @@ export function HeroSlider() {
         ))}
 
         {/* Gradient overlay for legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/65 to-foreground/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent md:hidden" />
+        <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/75 to-foreground/45" />
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent md:hidden" />
 
         {/* Content */}
         <div
