@@ -211,13 +211,13 @@ function CarsPage() {
             Берём на себя всё — от подготовки автомобиля до момента, когда вы садитесь за руль с готовыми документами.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {pillars.map((p) => (
-            <div key={p.t} className="rounded-3xl surface-cream p-7 md:p-8 flex flex-col">
-              <p.i size={28} className="text-brown" />
-              <div className="mt-5 text-[11px] uppercase tracking-[0.25em] text-brown font-semibold">{p.eyebrow}</div>
-              <div className="mt-2 font-display font-bold text-xl">{p.t}</div>
-              <p className="mt-3 text-sm text-foreground/75 flex-1">{p.d}</p>
+            <div key={p.t} className="rounded-2xl surface-cream p-6 flex flex-col">
+              <p.i size={24} className="text-brown" />
+              <div className="mt-4 text-[10px] uppercase tracking-[0.25em] text-brown font-semibold">{p.eyebrow}</div>
+              <div className="mt-2 font-display font-bold text-base leading-snug">{p.t}</div>
+              <p className="mt-2 text-sm text-foreground/75 flex-1">{p.d}</p>
             </div>
           ))}
         </div>
