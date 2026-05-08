@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/site/Layout";
+import { Faq } from "@/components/site/Faq";
 import { Search, ShieldCheck, FileText, Award, Filter, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/parts")({
@@ -22,11 +23,11 @@ const categories = [
 ];
 
 const faq = [
-  { q: "Как вы подтверждаете оригинальность?", a: "К каждой позиции — сертификат соответствия, декларация и/или паспорт качества. Документы доступны до оплаты." },
-  { q: "Можно ли подобрать по VIN?", a: "Да. Оставьте VIN в форме — менеджер пришлёт точные артикулы и сроки." },
-  { q: "Что есть в наличии?", a: "На складе — масла, жидкости, группа ТО, подвеска и тормозная система. Остальное — под заказ." },
-  { q: "Какие сроки под заказ?", a: "Стандарт — 7–21 день. Для гарантийных кейсов СТО — авиадоставка из Китая 14 дней." },
-  { q: "Скидки для СТО?", a: "До 10% за объём. Условия — на странице «Для СТО»." },
+  { q: "Как подтвердить оригинальность?", a: "Каждая позиция сопровождается сертификатами, декларациями соответствия или паспортами качества. Документы прилагаются к заказу." },
+  { q: "Можно ли подобрать по VIN?", a: "Да, укажите VIN автомобиля — мы проверим совместимость и предложим оригинальные варианты." },
+  { q: "Что есть в наличии?", a: "Масла, жидкости, группа ТО и ходовые позиции. Остальное — под заказ. Актуальный статус виден в каталоге." },
+  { q: "Какие сроки под заказ?", a: "Зависят от позиции и поставщика. В среднем 7–14 дней. Точный срок согласовываем перед заказом." },
+  { q: "Есть ли скидки для СТО?", a: "Да, до 15% за объём при регулярных закупках. Условия обсуждаем индивидуально." },
 ];
 
 function PartsPage() {
@@ -111,26 +112,18 @@ function PartsPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="container-page mt-16">
-        <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Частые вопросы</h2>
-        <div className="grid md:grid-cols-2 gap-4">
-          {faq.map((f) => (
-            <div key={f.q} className="rounded-2xl bg-card border border-border p-6">
-              <div className="font-display font-semibold">{f.q}</div>
-              <div className="mt-2 text-sm text-foreground/75">{f.a}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Faq items={faq} />
 
       <section className="container-page mt-16">
         <div className="rounded-3xl surface-sand p-8 md:p-12 flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
           <div>
-            <h3 className="text-2xl md:text-3xl font-display font-bold">Запросить подбор</h3>
+            <h3 className="text-2xl md:text-3xl font-display font-bold">Нужен точный подбор или коммерческое предложение?</h3>
             <p className="text-foreground/75 mt-1">Менеджер ответит в течение рабочего часа.</p>
           </div>
-          <Link to="/contacts" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold">Оставить заявку <ArrowRight size={18} /></Link>
+          <div className="flex flex-wrap gap-2">
+            <Link to="/contacts" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold">Запросить подбор <ArrowRight size={18} /></Link>
+            <Link to="/for-sto" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background border border-border font-semibold">Получить прайс</Link>
+          </div>
         </div>
       </section>
     </Layout>
