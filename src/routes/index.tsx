@@ -38,10 +38,10 @@ function HomePage() {
           <div className="lg:col-span-5">
             <div className="text-xs uppercase tracking-widest text-brown font-semibold">Почему Орионавто</div>
             <h2 className="mt-3 text-3xl md:text-4xl font-display font-bold">
-              Ориентир в мире, где трудно отличить оригинал от копии.
+              Оригинал — или ничего. Без аналогов и «похожих» запчастей.
             </h2>
             <p className="mt-4 text-foreground/70 max-w-md">
-              Мы работаем для тех, кому нужна предсказуемость: для СТО, детейлинг-студий и осознанных автовладельцев. К каждой позиции — документы.
+              Работаем для СТО, детейлинг-студий и автовладельцев, которым важно ставить только то, в чём уверены. К каждой позиции — сертификаты, декларации и паспорта качества.
             </p>
           </div>
           <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
