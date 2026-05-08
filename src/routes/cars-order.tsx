@@ -4,7 +4,7 @@ import carImg from "@/assets/car-order.jpg";
 import car1 from "@/assets/car-1.jpg";
 import car2 from "@/assets/car-2.jpg";
 import car3 from "@/assets/car-3.jpg";
-import { ArrowRight, Wrench, Banknote, FileCheck2 } from "lucide-react";
+import { ArrowRight, MessageSquare, Search, FileSignature, Ship, Wrench, Banknote, FileCheck2, Key } from "lucide-react";
 
 export const Route = createFileRoute("/cars-order")({
   head: () => ({
@@ -20,45 +20,75 @@ export const Route = createFileRoute("/cars-order")({
 const collection = [
   {
     img: car1,
-    brand: "Hongqi",
-    model: "HS9 Executive",
-    tag: "Флагманский SUV",
-    specs: ["3.0 V6 Twin-Turbo", "AWD · 8 мест", "Под заказ · 6–10 недель"],
+    brand: "Mercedes-Benz",
+    model: "G 63 AMG",
+    tag: "Iconic Off-Road",
+    specs: ["4.0 V8 Bi-Turbo · 585 л.с.", "AWD · Designo интерьер", "Поставка из Европы · 8–12 недель"],
   },
   {
     img: car2,
-    brand: "Zeekr",
-    model: "001 FR",
-    tag: "Premium Shooting Brake",
-    specs: ["Dual motor · 1265 л.с.", "0–100 за 2.07 с", "В наличии · 1 авто"],
+    brand: "Porsche",
+    model: "911 Turbo S",
+    tag: "Sports Coupe",
+    specs: ["3.7 Bi-Turbo · 650 л.с.", "0–100 за 2.7 с · PDK", "Поставка из Европы · 6–10 недель"],
   },
   {
     img: car3,
-    brand: "Li Auto",
-    model: "L9 Max",
-    tag: "Executive Crossover",
-    specs: ["Range Extender · 1.5T", "AWD · 6 мест", "Под заказ · 4–8 недель"],
+    brand: "BMW",
+    model: "X7 M60i xDrive",
+    tag: "Luxury SUV",
+    specs: ["4.4 V8 · 530 л.с.", "AWD · 7 мест · Executive Lounge", "Поставка из Европы · 8–12 недель"],
   },
 ];
 
 const pillars = [
   {
+    i: MessageSquare,
+    eyebrow: "01 · Запрос",
+    t: "Бриф и консультация",
+    d: "Обсуждаем модель, комплектацию, бюджет и сроки. Уточняем сценарий использования и индивидуальные пожелания.",
+  },
+  {
+    i: Search,
+    eyebrow: "02 · Подбор",
+    t: "Поиск и проверка",
+    d: "Находим автомобили в Европе, проверяем историю, состояние и комплектацию. Согласуем 2–3 лучших варианта.",
+  },
+  {
+    i: FileSignature,
+    eyebrow: "03 · Договор",
+    t: "Прозрачные условия",
+    d: "Фиксируем стоимость, сроки и зону ответственности в договоре. Принимаем предоплату на расчётный счёт.",
+  },
+  {
+    i: Ship,
+    eyebrow: "04 · Логистика",
+    t: "Выкуп и доставка",
+    d: "Выкупаем автомобиль, организуем безопасную транспортировку до Беларуси, проходим таможенное оформление.",
+  },
+  {
     i: Wrench,
-    eyebrow: "01 · Подготовка",
-    t: "Готовим автомобиль к передаче",
-    d: "Полная диагностика, предпродажная подготовка, защита кузова и салона. Автомобиль приезжает к вам в безупречном состоянии.",
+    eyebrow: "05 · Подготовка",
+    t: "Предпродажная подготовка",
+    d: "Полная диагностика, детейлинг, защита кузова и салона. Автомобиль приезжает к вам в безупречном состоянии.",
   },
   {
     i: Banknote,
-    eyebrow: "02 · Финансирование",
-    t: "Подбираем финансирование",
-    d: "Лизинг и кредит на индивидуальных условиях от партнёрских банков — для физических лиц и компаний.",
+    eyebrow: "06 · Финансирование",
+    t: "Лизинг и кредит",
+    d: "Подбираем условия лизинга и кредитования от партнёрских банков — для физических лиц и компаний.",
   },
   {
     i: FileCheck2,
-    eyebrow: "03 · Постановка на учёт",
-    t: "Берём на себя оформление",
-    d: "Регистрация в ГАИ, страхование, документы и номера — без вашего участия. Получаете готовый к эксплуатации автомобиль.",
+    eyebrow: "07 · Постановка на учёт",
+    t: "ГАИ и страхование",
+    d: "Регистрация в ГАИ, оформление страховки, получение номеров и документов — берём бюрократию на себя.",
+  },
+  {
+    i: Key,
+    eyebrow: "08 · Вручение ключей",
+    t: "Передача автомобиля",
+    d: "Передаём ключи и комплект документов, проводим знакомство с автомобилем. Остаёмся на связи для сервисной поддержки.",
   },
 ];
 
@@ -181,13 +211,13 @@ function CarsPage() {
             Берём на себя всё — от подготовки автомобиля до момента, когда вы садитесь за руль с готовыми документами.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {pillars.map((p) => (
-            <div key={p.t} className="rounded-3xl surface-cream p-7 md:p-8 flex flex-col">
-              <p.i size={28} className="text-brown" />
-              <div className="mt-5 text-[11px] uppercase tracking-[0.25em] text-brown font-semibold">{p.eyebrow}</div>
-              <div className="mt-2 font-display font-bold text-xl">{p.t}</div>
-              <p className="mt-3 text-sm text-foreground/75 flex-1">{p.d}</p>
+            <div key={p.t} className="rounded-2xl surface-cream p-6 flex flex-col">
+              <p.i size={24} className="text-brown" />
+              <div className="mt-4 text-[10px] uppercase tracking-[0.25em] text-brown font-semibold">{p.eyebrow}</div>
+              <div className="mt-2 font-display font-bold text-base leading-snug">{p.t}</div>
+              <p className="mt-2 text-sm text-foreground/75 flex-1">{p.d}</p>
             </div>
           ))}
         </div>
