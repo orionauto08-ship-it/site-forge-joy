@@ -64,7 +64,7 @@ export function Header() {
           <button
             onClick={openCart}
             aria-label="Корзина"
-            className="relative h-10 w-10 inline-flex items-center justify-center rounded-lg border border-border"
+            className="md:hidden relative h-10 w-10 inline-flex items-center justify-center rounded-lg border border-border"
           >
             <ShoppingBag size={18} />
             {count > 0 && (
