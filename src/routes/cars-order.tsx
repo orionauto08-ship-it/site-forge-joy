@@ -13,6 +13,8 @@ export const Route = createFileRoute("/cars-order")({
       { name: "description", content: "Подбор и поставка автомобилей премиум-сегмента под ключ. Предпродажная подготовка, лизинг и кредит, постановка на учёт." },
       { property: "og:title", content: "Автомобили под заказ — от подбора до постановки на учёт" },
       { property: "og:description", content: "Премиум-сопровождение: поиск, доставка, таможня, лизинг, постановка на учёт." },
+      { property: "og:image", content: "https://orionavto.by/og/og-cars-order.jpg" },
+      { name: "twitter:image", content: "https://orionavto.by/og/og-cars-order.jpg" },
     ],
   }),
   component: CarsPage,
