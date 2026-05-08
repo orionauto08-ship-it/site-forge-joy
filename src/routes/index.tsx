@@ -94,7 +94,7 @@ function HomePage() {
         <div className="flex items-end justify-between mb-6">
           <div>
             <div className="text-xs uppercase tracking-widest text-brown font-semibold">01 · Запасные части</div>
-            <h2 className="mt-2 text-3xl md:text-4xl font-display font-bold">Категории каталога</h2>
+            <h2 className="mt-2 text-2xl md:text-3xl font-display font-bold">Каталог запасных частей</h2>
           </div>
           <Link to="/parts" className="hidden md:inline-flex items-center gap-1 text-sm font-semibold text-forest">
             Весь каталог <ArrowRight size={16} />
@@ -102,38 +102,36 @@ function HomePage() {
         </div>
 
         <div className="bento">
-          <div className="bento-card surface-forest span-2 row-2 flex flex-col justify-between min-h-[260px]">
+          <div className="bento-card surface-forest span-2 row-2 flex flex-col justify-between min-h-[220px]">
             <div>
-              <Droplets size={32} />
-              <div className="mt-4 font-display font-bold text-2xl">Масла и технические жидкости</div>
-              <div className="mt-2 text-sm text-forest-foreground/85">Моторные масла, антифризы, трансмиссионные и тормозные жидкости — со склада.</div>
+              <Droplets size={28} />
+              <div className="mt-3 font-display font-bold text-xl">Масла и технические жидкости</div>
+              <div className="mt-2 text-sm text-forest-foreground/85">Моторные масла, антифризы, трансмиссионные и тормозные жидкости.</div>
             </div>
-            <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">В наличии <ArrowRight size={16} /></div>
+            <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold">В наличии <ArrowRight size={16} /></div>
           </div>
 
           <div className="bento-card surface-cream">
-            <Wrench size={28} className="text-brown" />
-            <div className="mt-4 font-display font-bold text-lg">Группа ТО</div>
+            <Wrench size={24} className="text-brown" />
+            <div className="mt-3 font-display font-bold text-base">Группа ТО</div>
             <div className="mt-1 text-sm text-foreground/70">Фильтры, свечи, ремни, расходники.</div>
           </div>
 
           <div className="bento-card">
-            <CircleDot size={28} className="text-forest" />
-            <div className="mt-4 font-display font-bold text-lg">Подвеска</div>
-            <div className="mt-1 text-sm text-foreground/70">Амортизаторы, рычаги, опоры. Со склада.</div>
-            <span className="mt-3 inline-block text-[11px] font-semibold uppercase tracking-wider text-forest bg-cream px-2 py-1 rounded-md">Новое — со склада</span>
+            <CircleDot size={24} className="text-forest" />
+            <div className="mt-3 font-display font-bold text-base">Подвеска</div>
+            <div className="mt-1 text-sm text-foreground/70">Амортизаторы, рычаги, опоры.</div>
           </div>
 
           <div className="bento-card surface-cream">
-            <Disc3 size={28} className="text-brown" />
-            <div className="mt-4 font-display font-bold text-lg">Тормозная система</div>
+            <Disc3 size={24} className="text-brown" />
+            <div className="mt-3 font-display font-bold text-base">Тормозная система</div>
             <div className="mt-1 text-sm text-foreground/70">Колодки, диски, суппорты.</div>
-            <span className="mt-3 inline-block text-[11px] font-semibold uppercase tracking-wider text-forest bg-background px-2 py-1 rounded-md">Новое — со склада</span>
           </div>
 
           <div className="bento-card surface-brown span-2">
-            <Car size={28} />
-            <div className="mt-4 font-display font-bold text-lg">Лобовые стёкла и кузов</div>
+            <Car size={24} />
+            <div className="mt-3 font-display font-bold text-base">Лобовые стёкла и кузов</div>
             <div className="mt-1 text-sm text-brown-foreground/85">Кузовные элементы под заказ — для большинства марок и моделей.</div>
           </div>
         </div>
