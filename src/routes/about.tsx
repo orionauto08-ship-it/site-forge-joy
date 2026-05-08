@@ -81,10 +81,11 @@ function AboutPage() {
       </section>
 
       {/* Stats */}
-      <section className="container-page mt-12 grid md:grid-cols-3 gap-4">
+      <section className="container-page mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { n: "20", t: "лет опыта", d: "Команда специалистов с многолетним стажем в автобизнесе." },
           { n: "9+", t: "брендов привозим", d: "BYD, Zeekr, LiXiang, Changan, Chery, Voyah, Deepal, Leapmotor, Xiaomi и др." },
+          { n: "500+", t: "автомобилей поставлено", d: "Электромобили, гибриды и классические ДВС под ключ — от подбора до постановки на учёт." },
           { n: "100%", t: "оригинал", d: "Сертификаты, декларации соответствия, паспорта качества." },
         ].map((s) => (
           <div key={s.t} className="rounded-2xl bg-card border border-border p-8">
