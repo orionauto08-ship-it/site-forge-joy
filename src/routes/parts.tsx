@@ -7,7 +7,7 @@ export const Route = createFileRoute("/parts")({
   head: () => ({
     meta: [
       { title: "Запчасти — оригинал с документами | Орионавто" },
-      { name: "description", content: "Каталог оригинальных автозапчастей: BYD, Zeekr, LiXiang, Changan, Chery, Voyah, Deepal, Leapmotor, Xiaomi и др. Подбор по VIN, фильтры, документы подлинности." },
+      { name: "description", content: "Каталог оригинальных автозапчастей: BYD, Zeekr, LiXiang, Changan, Chery, Voyah, Deepal, Leapmotor, Xiaomi и др. Фильтры, документы подлинности." },
     ],
   }),
   component: PartsPage,
@@ -18,13 +18,13 @@ const categories = [
   { t: "Группа ТО", d: "Фильтры, свечи, ремни.", stock: true },
   { t: "Подвеска", d: "Амортизаторы, рычаги, опоры.", stock: true, badge: "Новое" },
   { t: "Тормозная система", d: "Колодки, диски, суппорты.", stock: true, badge: "Новое" },
-  { t: "Лобовые стёкла", d: "Под заказ, точно по VIN.", stock: false },
-  { t: "Кузовные детали", d: "Под заказ, точно по VIN.", stock: false },
+  { t: "Лобовые стёкла", d: "Под заказ для большинства моделей.", stock: false },
+  { t: "Кузовные детали", d: "Под заказ по марке и модели.", stock: false },
 ];
 
 const faq = [
   { q: "Как подтвердить оригинальность?", a: "Каждая позиция сопровождается сертификатами, декларациями соответствия или паспортами качества. Документы прилагаются к заказу." },
-  { q: "Можно ли подобрать по VIN?", a: "Да, укажите VIN автомобиля — мы проверим совместимость и предложим оригинальные варианты." },
+  { q: "Как подобрать нужную деталь?", a: "Укажите марку, модель, год выпуска и артикул (если есть) — мы проверим совместимость и предложим оригинальные варианты." },
   { q: "Что есть в наличии?", a: "Масла, жидкости, группа ТО и ходовые позиции. Остальное — под заказ. Актуальный статус виден в каталоге." },
   { q: "Какие сроки под заказ?", a: "Зависят от позиции и поставщика. Точные сроки согласовываем перед заказом." },
   { q: "Есть ли скидки для СТО?", a: "Да, до 15% за объём при регулярных закупках. Условия обсуждаем индивидуально." },
@@ -46,7 +46,7 @@ function PartsPage() {
           <div className="mt-8 grid md:grid-cols-[1fr_auto] gap-3 max-w-3xl">
             <div className="flex items-center gap-3 h-14 px-4 rounded-2xl bg-background border border-border">
               <Search size={20} className="text-forest" />
-              <input className="flex-1 bg-transparent outline-none text-base" placeholder="Артикул, OEM или VIN" />
+              <input className="flex-1 bg-transparent outline-none text-base" placeholder="Артикул или OEM" />
             </div>
             <button className="h-14 px-6 rounded-2xl surface-forest font-semibold inline-flex items-center justify-center gap-2">
               Найти <ArrowRight size={18} />
@@ -108,7 +108,7 @@ function PartsPage() {
         <div className="rounded-2xl surface-forest p-8">
           <div className="text-xs uppercase tracking-widest font-semibold text-sand">Вариант 2</div>
           <h3 className="mt-2 font-display font-bold text-2xl">Подбор через менеджера</h3>
-          <p className="mt-2 text-forest-foreground/85">Пришлите VIN — мы подберём детали и пришлём прайс с документами.</p>
+          <p className="mt-2 text-forest-foreground/85">Опишите задачу — подберём детали и пришлём прайс с документами.</p>
         </div>
       </section>
 

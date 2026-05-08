@@ -9,7 +9,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Орионавто — оригинальные автозапчасти с документами | Минск" },
-      { name: "description", content: "Поставщик оригинальных автозапчастей BYD, Zeekr, LiXiang, Changan, Chery и др. Diamond ProTech. Авто под заказ. Подбор по VIN, документы подлинности." },
+      { name: "description", content: "Поставщик оригинальных автозапчастей BYD, Zeekr, LiXiang, Changan, Chery и др. Diamond ProTech. Авто под заказ. Документы подлинности на каждую позицию." },
     ],
   }),
   component: HomePage,
@@ -129,7 +129,7 @@ function HomePage() {
               <div className="text-xs uppercase tracking-widest text-brown font-semibold">Фокус на брендах</div>
               <h2 className="mt-2 text-2xl md:text-3xl font-display font-bold">Китайские бренды и не только</h2>
             </div>
-            <Link to="/parts" className="text-sm font-semibold text-forest inline-flex items-center gap-1">Подбор по VIN <ArrowRight size={16} /></Link>
+            <Link to="/parts" className="text-sm font-semibold text-forest inline-flex items-center gap-1">Открыть каталог <ArrowRight size={16} /></Link>
           </div>
           <div className="flex flex-wrap gap-2">
             {brands.map((b) => (
@@ -147,7 +147,7 @@ function HomePage() {
         <div className="grid md:grid-cols-3 gap-4">
           {[
             { t: "СТО", d: "Стабильные поставки оригинала. Скидки до 15% за объём. Гибкие условия для гарантийных кейсов.", to: "/for-sto", cta: "Получить КП" },
-            { t: "Автовладельцы", d: "Подбор по VIN, документы подлинности, прозрачные сроки.", to: "/parts", cta: "Подобрать запчасть" },
+            { t: "Автовладельцы", d: "Точный подбор оригинала, документы подлинности, прозрачные сроки.", to: "/parts", cta: "Подобрать запчасть" },
             { t: "Детейлинг-студии", d: "Diamond ProTech, PRO-линейка, программы сертификации.", to: "/diamond-protech", cta: "Условия для студий" },
           ].map((a) => (
             <div key={a.t} className="rounded-2xl bg-card border border-border p-6 md:p-8 flex flex-col">
@@ -200,10 +200,10 @@ function HomePage() {
           <div className="md:col-span-5 rounded-3xl bg-card border border-border p-8 md:p-10">
             <div className="text-xs uppercase tracking-widest text-brown font-semibold">Финальный CTA</div>
             <h3 className="mt-3 text-2xl font-display font-bold">Нужен оригинал без риска?</h3>
-            <p className="mt-2 text-foreground/70 text-sm">Оставьте заявку — подберём по VIN и пришлём документы.</p>
+            <p className="mt-2 text-foreground/70 text-sm">Оставьте заявку — подберём оригинал и пришлём документы.</p>
             <form className="mt-5 grid gap-3">
               <input type="tel" placeholder="Телефон" className="h-12 px-4 rounded-xl border border-border bg-background focus:outline-none focus:border-forest" />
-              <input type="text" placeholder="Марка / модель / VIN (опционально)" className="h-12 px-4 rounded-xl border border-border bg-background focus:outline-none focus:border-forest" />
+              <input type="text" placeholder="Марка / модель / артикул (опционально)" className="h-12 px-4 rounded-xl border border-border bg-background focus:outline-none focus:border-forest" />
               <button type="button" className="h-12 rounded-xl surface-forest font-semibold">Запросить подбор</button>
               <p className="text-[11px] text-muted-foreground">Нажимая, вы соглашаетесь с политикой конфиденциальности.</p>
             </form>
@@ -231,7 +231,7 @@ function HomePage() {
         <div className="rounded-3xl bg-card border border-border p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4">
           <Search size={28} className="text-forest" />
           <div className="flex-1">
-            <div className="font-display font-bold text-lg">Поиск по артикулу, OEM или VIN</div>
+            <div className="font-display font-bold text-lg">Поиск по артикулу или OEM</div>
             <div className="text-sm text-foreground/70">Подбираем точно — без аналогов и компромиссов.</div>
           </div>
           <Link to="/parts" className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold">Открыть каталог</Link>
