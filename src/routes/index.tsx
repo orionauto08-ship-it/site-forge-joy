@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/site/Layout";
-import heroImg from "@/assets/hero-parts.jpg";
+import { HeroSlider } from "@/components/site/HeroSlider";
 import diamondImg from "@/assets/diamond.jpg";
 import carImg from "@/assets/car-order.jpg";
 import { ShieldCheck, FileText, Award, Truck, Search, Wrench, Droplets, Disc3, CircleDot, Car, ArrowRight, CheckCircle2 } from "lucide-react";
@@ -20,54 +20,16 @@ const brands = ["BYD", "Zeekr", "LiXiang", "Changan", "Chery", "Voyah", "Deepal"
 function HomePage() {
   return (
     <Layout>
-      {/* HERO */}
-      <section className="container-page pt-10 md:pt-16">
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
-          <div className="lg:col-span-7 rounded-3xl surface-sand p-8 md:p-12 lg:p-14 flex flex-col justify-between min-h-[440px] md:min-h-[520px]">
-            <div>
-              <span className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-brown font-semibold">
-                <span className="h-1.5 w-1.5 rounded-full bg-forest" /> Орионавто · с 2005
-              </span>
-              <h1 className="mt-5 text-4xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight">
-                Оригинал —<br />это не обещание,<br />
-                <span className="text-forest">а документ.</span>
-              </h1>
-              <p className="mt-6 max-w-xl text-base md:text-lg text-foreground/75">
-                Оригинальные автозапчасти с подтверждённой подлинностью, профессиональная химия Diamond ProTech и автомобили под заказ. Подбор и поставка с гарантией.
-              </p>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/parts" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold hover:opacity-95">
-                Подобрать запчасти <ArrowRight size={18} />
-              </Link>
-              <Link to="/contacts" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background border border-border font-semibold hover:bg-cream">
-                Получить консультацию
-              </Link>
-            </div>
-          </div>
+      {/* HERO SLIDER */}
+      <HeroSlider />
 
-          <div className="lg:col-span-5 rounded-3xl overflow-hidden relative min-h-[300px]">
-            <img src={heroImg} alt="Оригинальные автозапчасти на складе Орионавто" className="absolute inset-0 h-full w-full object-cover" width={1600} height={1100} />
-            <div className="absolute bottom-4 left-4 right-4 backdrop-blur bg-background/85 rounded-2xl p-4 border border-border">
-              <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-lg surface-forest flex items-center justify-center">
-                  <Truck size={20} />
-                </div>
-                <div>
-                  <div className="font-display font-semibold leading-tight">Авиадоставка Китай → Минск</div>
-                  <div className="text-xs text-muted-foreground">2 недели — закрываем гарантийные кейсы дилеров</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Trust strip */}
-        <div className="mt-6 rounded-2xl bg-card border border-border px-5 py-4 flex flex-wrap gap-x-8 gap-y-2 text-sm text-foreground/80">
+      <section className="container-page mt-6">
+        <div className="rounded-2xl bg-card border border-border px-5 py-4 flex flex-wrap gap-x-8 gap-y-2 text-sm text-foreground/80">
           <span className="inline-flex items-center gap-2"><ShieldCheck size={16} className="text-forest" /> Только оригинал</span>
           <span className="inline-flex items-center gap-2"><Award size={16} className="text-forest" /> 20 лет у официальных дилеров</span>
           <span className="inline-flex items-center gap-2"><FileText size={16} className="text-forest" /> Сертификаты и декларации</span>
           <span className="inline-flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> СТО и автовладельцы · РБ</span>
+          <span className="inline-flex items-center gap-2"><Truck size={16} className="text-forest" /> Авиа из Китая · 14 дней</span>
         </div>
       </section>
 
