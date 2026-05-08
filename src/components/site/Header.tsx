@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, Phone, ShoppingBag } from "lucide-react";
 import { useCart } from "@/lib/cart-store";
+import logo from "@/assets/logo.png";
 
 const nav = [
   { to: "/parts", label: "Запчасти" },
