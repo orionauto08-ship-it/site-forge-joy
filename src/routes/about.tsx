@@ -37,7 +37,7 @@ const faq = [
   { q: "Почему только оригинал?", a: "Чтобы клиент был уверен в качестве и совместимости. Подделки и аналоги — это всегда риск." },
   { q: "Как подтверждаете подлинность?", a: "Сертификаты, декларации соответствия, паспорта качества." },
   { q: "Работаете ли с юрлицами?", a: "Да, выставляем счета с НДС, обсуждаем условия для СТО." },
-  { q: "Какие бренды в приоритете?", a: "BYD, Zeekr, Changan, Chery, Volkswagen, Mazda, Kia и др." },
+  { q: "Запасные части для каких брендов мы привозим?", a: "BYD, Zeekr, Changan, Chery, Volkswagen, Mazda, Kia и др." },
   { q: "Есть ли минимальный заказ?", a: "Нет, но при объёме действуют скидки." },
 ];
 
@@ -83,7 +83,7 @@ function AboutPage() {
       <section className="container-page mt-12 grid md:grid-cols-3 gap-4">
         {[
           { n: "20", t: "лет опыта", d: "Команда специалистов с многолетним стажем в автобизнесе." },
-          { n: "9+", t: "приоритетных брендов", d: "BYD, Zeekr, LiXiang, Changan, Chery, Voyah, Deepal, Leapmotor, Xiaomi." },
+          { n: "9+", t: "брендов привозим", d: "BYD, Zeekr, LiXiang, Changan, Chery, Voyah, Deepal, Leapmotor, Xiaomi и др." },
           { n: "100%", t: "оригинал", d: "Сертификаты, декларации соответствия, паспорта качества." },
         ].map((s) => (
           <div key={s.t} className="rounded-2xl bg-card border border-border p-8">
