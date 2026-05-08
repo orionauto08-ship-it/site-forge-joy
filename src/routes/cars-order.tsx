@@ -11,7 +11,8 @@ export const Route = createFileRoute("/cars-order")({
     meta: [
       { title: "Автомобили под заказ | Премиальное сопровождение | Орионавто" },
       { name: "description", content: "Подбор и поставка автомобилей премиум-сегмента под ключ. Предпродажная подготовка, лизинг и кредит, постановка на учёт." },
-      { property: "og:image", content: "/src/assets/car-order.jpg" },
+      { property: "og:title", content: "Автомобили под заказ — от подбора до постановки на учёт" },
+      { property: "og:description", content: "Премиум-сопровождение: поиск, доставка, таможня, лизинг, постановка на учёт." },
     ],
   }),
   component: CarsPage,

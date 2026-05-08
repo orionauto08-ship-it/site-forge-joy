@@ -12,6 +12,8 @@ export const Route = createFileRoute("/parts")({
     meta: [
       { title: "Каталог запасных частей | Орионавто" },
       { name: "description", content: "Каталог оригинальных автозапчастей: BYD, Zeekr, LiXiang, Changan, Chery, Voyah, Volkswagen, Audi и др. Корзина-заявка, документы подлинности, доставка." },
+      { property: "og:title", content: "Каталог оригинальных запасных частей" },
+      { property: "og:description", content: "Запчасти под заказ и в наличии для китайских и европейских брендов. С документами подлинности." },
     ],
   }),
   component: PartsPage,

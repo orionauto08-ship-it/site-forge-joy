@@ -10,6 +10,8 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Орионавто — оригинальные автозапчасти с документами | Минск" },
       { name: "description", content: "Поставщик оригинальных автозапчастей BYD, Zeekr, LiXiang, Changan, Chery и др. Diamond ProTech. Авто под заказ. Документы подлинности на каждую позицию." },
+      { property: "og:title", content: "Орионавто — оригинальные автозапчасти с документами" },
+      { property: "og:description", content: "Запчасти, Diamond ProTech и авто под заказ. Только оригинал, подтверждённый документами." },
     ],
   }),
   component: HomePage,
