@@ -39,7 +39,7 @@ function HomePage() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
           <div>
             <div className="text-xs uppercase tracking-widest text-brown font-semibold">Что мы делаем</div>
-            <h2 className="mt-2 text-3xl md:text-4xl font-display font-bold">Три направления Орионавто</h2>
+            <h2 className="mt-2 text-3xl md:text-4xl font-display font-bold">Как мы можем быть полезны</h2>
           </div>
         </div>
         <div className="grid md:grid-cols-3 gap-4">
@@ -66,9 +66,9 @@ function HomePage() {
               i: Car,
               eyebrow: "Направление 03",
               t: "Авто под заказ",
-              d: "Подбор и поставка автомобилей из Китая, Европы и ОАЭ. Прозрачный договор, растаможка под ключ.",
+              d: "Подберём именно тот автомобиль, который вы хотите: доставим, растаможим, подготовим и привезём. Поможем поставить на учёт.",
               to: "/cars-order",
-              cta: "Получить расчёт",
+              cta: "Узнать детали",
               cls: "surface-brown",
             },
           ].map((c) => (
