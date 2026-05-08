@@ -23,21 +23,21 @@ const collection = [
     brand: "Mercedes-Benz",
     model: "G 63 AMG",
     tag: "Iconic Off-Road",
-    specs: ["4.0 V8 Bi-Turbo · 585 л.с.", "AWD · Designo интерьер", "Поставка из Европы · 8–12 недель"],
+    specs: ["4.0 V8 Bi-Turbo · 585 л.с.", "AWD · Designo интерьер", "Срок поставки · 8–12 недель"],
   },
   {
     img: car2,
     brand: "Porsche",
     model: "911 Turbo S",
     tag: "Sports Coupe",
-    specs: ["3.7 Bi-Turbo · 650 л.с.", "0–100 за 2.7 с · PDK", "Поставка из Европы · 6–10 недель"],
+    specs: ["3.7 Bi-Turbo · 650 л.с.", "0–100 за 2.7 с · PDK", "Срок поставки · 6–10 недель"],
   },
   {
     img: car3,
     brand: "BMW",
     model: "X7 M60i xDrive",
     tag: "Luxury SUV",
-    specs: ["4.4 V8 · 530 л.с.", "AWD · 7 мест · Executive Lounge", "Поставка из Европы · 8–12 недель"],
+    specs: ["4.4 V8 · 530 л.с.", "AWD · 7 мест · Executive Lounge", "Срок поставки · 8–12 недель"],
   },
 ];
 
