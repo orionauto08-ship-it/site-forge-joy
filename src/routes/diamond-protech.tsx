@@ -18,6 +18,8 @@ export const Route = createFileRoute("/diamond-protech")({
       { name: "description", content: "Эксклюзивный поставщик Diamond ProTech в Беларуси. Швейцарское производство. PRO-линейка с защитой до 10 лет, программы сертификации." },
       { property: "og:title", content: "Diamond ProTech — защитные покрытия и детейлинг-химия" },
       { property: "og:description", content: "Эксклюзив в Беларуси. Швейцарское производство, защита до 10 лет, обучение и сертификация студий." },
+      { property: "og:image", content: "https://orionavto.by/og/og-diamond.jpg" },
+      { name: "twitter:image", content: "https://orionavto.by/og/og-diamond.jpg" },
     ],
   }),
   component: DiamondPage,

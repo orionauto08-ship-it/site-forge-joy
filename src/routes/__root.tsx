@@ -80,8 +80,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Орионавто — ориентир в мире автозапчастей" },
       { property: "og:description", content: "Оригинал — это не обещание, а документ. Подбор и поставка с гарантией подлинности." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:image", content: "https://orionavto.by/og/og-default.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://orionavto.by/og/og-default.jpg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
