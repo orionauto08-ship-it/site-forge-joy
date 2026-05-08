@@ -52,10 +52,11 @@ function AboutPage() {
             Орионавто — ориентир в автомобильном мире
           </h1>
           <p className="mt-5 max-w-2xl text-foreground/75 text-lg">
-            Поставщик оригинальных запчастей, профессиональной химии Diamond ProTech и автомобилей под заказ. Работаем с СТО и автовладельцами по принципу: только оригинал, подтверждённый документами.
+            Поставщик оригинальных запчастей, профессиональной химии Diamond ProTech и автомобилей под заказ.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link to="/for-sto" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold">Начать сотрудничество <ArrowRight size={18} /></Link>
+            <Link to="/cars-order" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background border border-border font-semibold">Подобрать автомобиль</Link>
             <Link to="/parts" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background border border-border font-semibold">Подобрать запчасть</Link>
           </div>
         </div>
