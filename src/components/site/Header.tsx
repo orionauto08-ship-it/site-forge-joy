@@ -20,7 +20,7 @@ export function Header() {
           <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl surface-forest font-display font-bold">O</span>
           <div className="leading-tight">
             <div className="font-display font-bold text-lg tracking-tight">Орионавто</div>
-            <div className="text-[11px] text-muted-foreground -mt-0.5">Ориентир в мире автозапчастей</div>
+            <div className="text-[11px] text-muted-foreground -mt-0.5">Ориентир в мире автомобилей</div>
           </div>
         </Link>
 
@@ -38,8 +38,8 @@ export function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href="tel:+375290000000" className="inline-flex items-center gap-2 text-sm font-medium hover:text-forest">
-            <Phone size={16} /> +375 29 000 00 00
+          <a href="tel:+375293223080" className="inline-flex items-center gap-2 text-sm font-medium hover:text-forest">
+            <Phone size={16} /> +375 29 322 30 80
           </a>
           <Link to="/contacts" className="inline-flex h-10 items-center rounded-xl px-4 surface-forest text-sm font-semibold hover:opacity-95">
             Заявка
@@ -69,7 +69,7 @@ export function Header() {
               </Link>
             ))}
             <div className="flex gap-2 pt-2">
-              <a href="tel:+375290000000" className="flex-1 inline-flex items-center justify-center gap-2 h-11 rounded-xl border border-border text-sm font-medium">
+              <a href="tel:+375293223080" className="flex-1 inline-flex items-center justify-center gap-2 h-11 rounded-xl border border-border text-sm font-medium">
                 <Phone size={16} /> Позвонить
               </a>
               <Link to="/contacts" onClick={() => setOpen(false)} className="flex-1 inline-flex items-center justify-center h-11 rounded-xl surface-forest text-sm font-semibold">
