@@ -35,9 +35,18 @@ export function Footer() {
         <div>
           <div className="font-display font-semibold mb-3">Контакты</div>
           <ul className="space-y-2 text-sm">
-            <li><a href="tel:+375290000000" className="hover:text-forest">+375 29 000 00 00</a></li>
+            <li className="font-semibold text-foreground">ООО «ДаймондПроТеч»</li>
+            <li className="text-muted-foreground">УНП 193737947</li>
+            <li><a href="tel:+375293223080" className="hover:text-forest">+375 29 322 30 80</a></li>
             <li><a href="mailto:info@orionavto.by" className="hover:text-forest">info@orionavto.by</a></li>
-            <li className="text-muted-foreground">Минск, Республика Беларусь</li>
+            <li className="text-muted-foreground">
+              <span className="block text-foreground/80">Юр. адрес:</span>
+              220099, г. Минск, ул. Лейтенанта Кижеватова, д. 8, пом. 1
+            </li>
+            <li className="text-muted-foreground">
+              <span className="block text-foreground/80">Факт. адрес:</span>
+              220062, г. Минск, пр-т Победителей, д. 127, 2 этаж, офис 310
+            </li>
             <li className="flex gap-3 pt-2">
               <a href="#" className="px-3 py-1.5 rounded-lg surface-forest text-xs font-medium">Telegram</a>
               <a href="#" className="px-3 py-1.5 rounded-lg surface-brown text-xs font-medium">WhatsApp</a>
@@ -47,7 +56,7 @@ export function Footer() {
       </div>
       <div className="border-t border-border">
         <div className="container-page py-5 flex flex-col md:flex-row gap-2 justify-between text-xs text-muted-foreground">
-          <div>© {new Date().getFullYear()} Орионавто. УНП 000000000.</div>
+          <div>© {new Date().getFullYear()} ООО «ДаймондПроТеч». УНП 193737947.</div>
           <div>Оригинал — это не обещание, а документ.</div>
         </div>
       </div>

@@ -26,10 +26,9 @@ function HomePage() {
       <section className="container-page mt-6">
         <div className="rounded-2xl bg-card border border-border px-5 py-4 flex flex-wrap gap-x-8 gap-y-2 text-sm text-foreground/80">
           <span className="inline-flex items-center gap-2"><ShieldCheck size={16} className="text-forest" /> Только оригинал</span>
-          <span className="inline-flex items-center gap-2"><Award size={16} className="text-forest" /> 20 лет у официальных дилеров</span>
+          <span className="inline-flex items-center gap-2"><Award size={16} className="text-forest" /> 20 лет опыта в автобизнесе</span>
           <span className="inline-flex items-center gap-2"><FileText size={16} className="text-forest" /> Сертификаты и декларации</span>
           <span className="inline-flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> СТО и автовладельцы · РБ</span>
-          <span className="inline-flex items-center gap-2"><Truck size={16} className="text-forest" /> Авиа из Китая · 14 дней</span>
         </div>
       </section>
 
@@ -48,9 +47,9 @@ function HomePage() {
           <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
             {[
               { i: FileText, t: "Документы", d: "Сертификаты, декларации соответствия, паспорта качества." },
-              { i: Award, t: "20 лет опыта", d: "Команда специалистов из официальных дилерских центров." },
+              { i: Award, t: "20 лет опыта", d: "Команда специалистов с многолетним стажем в автобизнесе." },
               { i: ShieldCheck, t: "Без серых деталей", d: "Не везём аналоги, восстановленные и фабричные копии." },
-              { i: Truck, t: "Надёжная логистика", d: "Склад ходовых позиций + авиадоставка из Китая 14 дней." },
+              { i: Truck, t: "Надёжная логистика", d: "Склад ходовых позиций и понятные сроки под заказ." },
             ].map((f) => (
               <div key={f.t} className="bento-card surface-cream !border-transparent">
                 <f.i size={28} className="text-forest" />
@@ -147,7 +146,7 @@ function HomePage() {
         <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Для кого мы работаем</h2>
         <div className="grid md:grid-cols-3 gap-4">
           {[
-            { t: "СТО", d: "Стабильные поставки оригинала. Скидки до 10% за объём. Авиадоставка для гарантийных кейсов.", to: "/for-sto", cta: "Получить КП" },
+            { t: "СТО", d: "Стабильные поставки оригинала. Скидки до 15% за объём. Гибкие условия для гарантийных кейсов.", to: "/for-sto", cta: "Получить КП" },
             { t: "Автовладельцы", d: "Подбор по VIN, документы подлинности, прозрачные сроки.", to: "/parts", cta: "Подобрать запчасть" },
             { t: "Детейлинг-студии", d: "Diamond ProTech, PRO-линейка, программы сертификации.", to: "/diamond-protech", cta: "Условия для студий" },
           ].map((a) => (
@@ -189,13 +188,13 @@ function HomePage() {
         </div>
       </section>
 
-      {/* B2B AIR DELIVERY */}
+      {/* B2B + FINAL CTA */}
       <section className="container-page mt-20">
         <div className="grid md:grid-cols-12 gap-6 items-stretch">
           <div className="md:col-span-7 rounded-3xl surface-forest p-8 md:p-12">
             <div className="text-xs uppercase tracking-widest font-semibold text-sand">Для B2B</div>
-            <h2 className="mt-3 text-3xl md:text-4xl font-display font-bold">Авиадоставка из Китая за 2 недели</h2>
-            <p className="mt-4 text-forest-foreground/85 max-w-xl">Закрываем гарантийные кейсы дилерских центров в Беларуси. Это отдельное конкурентное преимущество для СТО и официальных представительств.</p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-display font-bold">Стабильные поставки для СТО и дилеров</h2>
+            <p className="mt-4 text-forest-foreground/85 max-w-xl">Скидки до 15% за объём, индивидуальные условия для регулярных закупок, документы и счета для бухгалтерии — закрываем рабочие задачи СТО и официальных представительств.</p>
             <Link to="/for-sto" className="mt-6 inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background text-foreground font-semibold">Получить КП <ArrowRight size={18} /></Link>
           </div>
           <div className="md:col-span-5 rounded-3xl bg-card border border-border p-8 md:p-10">
@@ -221,7 +220,7 @@ function HomePage() {
           <div className="md:col-span-7 rounded-3xl surface-sand p-8 md:p-12">
             <div className="text-xs uppercase tracking-widest text-brown font-semibold">Авто под заказ</div>
             <h2 className="mt-3 text-3xl md:text-4xl font-display font-bold">Китай · Европа · ОАЭ. Под ключ.</h2>
-            <p className="mt-3 text-foreground/75 max-w-xl">Прозрачный договор, документы на ввоз, растаможка под ключ. 20 лет опыта в подборе и поставке.</p>
+            <p className="mt-3 text-foreground/75 max-w-xl">Прозрачный договор, документы на ввоз, растаможка под ключ. 20 лет опыта в автобизнесе.</p>
             <Link to="/cars-order" className="mt-6 inline-flex items-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold">Получить расчёт <ArrowRight size={18} /></Link>
           </div>
         </div>

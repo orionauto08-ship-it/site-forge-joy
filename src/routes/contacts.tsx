@@ -26,10 +26,10 @@ function ContactsPage() {
       <section className="container-page mt-10 grid md:grid-cols-2 gap-6">
         <div className="space-y-4">
           {[
-            { i: Phone, t: "Телефон", v: "+375 29 000 00 00", href: "tel:+375290000000" },
+            { i: Phone, t: "Телефон", v: "+375 29 322 30 80", href: "tel:+375293223080" },
             { i: Mail, t: "Email", v: "info@orionavto.by", href: "mailto:info@orionavto.by" },
             { i: MessageCircle, t: "Telegram / WhatsApp", v: "Написать в мессенджере", href: "#" },
-            { i: MapPin, t: "Адрес", v: "Минск, Республика Беларусь", href: "#" },
+            { i: MapPin, t: "Офис", v: "Минск, пр-т Победителей, 127, офис 310", href: "#" },
           ].map((c) => (
             <a key={c.t} href={c.href} className="block rounded-2xl bg-card border border-border p-6 hover:-translate-y-0.5 transition-transform">
               <div className="flex items-center gap-4">
@@ -43,9 +43,31 @@ function ContactsPage() {
               </div>
             </a>
           ))}
+
+          <div className="rounded-2xl surface-cream border border-border p-6">
+            <div className="text-xs uppercase tracking-widest text-brown font-semibold mb-3">Реквизиты</div>
+            <dl className="grid gap-3 text-sm">
+              <div>
+                <dt className="text-muted-foreground">Юридическое лицо</dt>
+                <dd className="font-semibold">ООО «ДаймондПроТеч»</dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">УНП</dt>
+                <dd className="font-semibold">193737947</dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">Юридический адрес</dt>
+                <dd>220099, г. Минск, ул. Лейтенанта Кижеватова, д. 8, пом. 1</dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">Фактический адрес</dt>
+                <dd>220062, г. Минск, пр-т Победителей, д. 127, 2 этаж, офис 310</dd>
+              </div>
+            </dl>
+          </div>
         </div>
 
-        <div className="rounded-3xl bg-card border border-border p-8">
+        <div className="rounded-3xl bg-card border border-border p-8 h-fit sticky top-24">
           <h2 className="text-2xl font-display font-bold">Оставить заявку</h2>
           <p className="text-sm text-foreground/70 mt-1">Опишите задачу — подберём решение.</p>
           <form className="mt-5 grid gap-3">
