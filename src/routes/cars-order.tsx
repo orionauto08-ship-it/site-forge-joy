@@ -65,6 +65,30 @@ function CarsPage() {
         <h3 className="text-2xl md:text-3xl font-display font-bold">Что входит в стоимость</h3>
         <p className="mt-3 text-foreground/75 max-w-2xl">Цена авто + логистика + растаможка + страховка + комиссия. Никаких скрытых платежей.</p>
       </section>
+
+      {/* Дополнительные услуги */}
+      <section className="container-page mt-16">
+        <div className="mb-6">
+          <div className="text-xs uppercase tracking-widest text-brown font-semibold">Дополнительные услуги</div>
+          <h2 className="mt-2 text-3xl md:text-4xl font-display font-bold">Полный сервис для вашего автомобиля</h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-4">
+          {[
+            { t: "Консьерж-сервис", d: "Сопровождение по ремонту, регистрации, ГАИ и техосмотру — берём бюрократию на себя." },
+            { t: "Детейлинг", d: "Профессиональный уход за кузовом и салоном с применением премиальных составов." },
+            { t: "Оклейка плёнкой", d: "Защитные и стилистические покрытия: антигравийная плёнка, виниловая стилизация." },
+            { t: "Выкуп автомобиля", d: "Выкупаем ваш автомобиль по справедливой цене — оценка и оформление в один день." },
+            { t: "Trade-in", d: "Зачёт вашего автомобиля в стоимость нового — прозрачная оценка без скрытых условий." },
+            { t: "Лизинг", d: "Подбираем оптимальные условия лизинга от партнёрских банков — для физлиц и компаний." },
+          ].map((s) => (
+            <div key={s.t} className="rounded-2xl bg-card border border-border p-6 md:p-7 flex flex-col">
+              <div className="text-[11px] uppercase tracking-[0.2em] text-brown font-semibold">— Сервис</div>
+              <div className="mt-3 font-display font-bold text-lg">{s.t}</div>
+              <p className="mt-2 text-sm text-foreground/70 flex-1">{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </Layout>
   );
 }
