@@ -274,7 +274,7 @@ function HomePage() {
           <div className="md:col-span-7 rounded-3xl surface-forest p-8 md:p-12">
             <div className="text-xs uppercase tracking-widest font-semibold text-sand">Для B2B</div>
             <h2 className="mt-3 text-3xl md:text-4xl font-display font-bold">Стабильные поставки для СТО и дилеров</h2>
-            <p className="mt-4 text-forest-foreground/85 max-w-xl">Скидки до 15% за объём, индивидуальные условия для регулярных закупок, документы и счета для бухгалтерии — закрываем рабочие задачи СТО и официальных представительств.</p>
+            <p className="mt-4 text-forest-foreground/85 max-w-xl">Скидки до 10% за объём, индивидуальные условия для регулярных закупок, документы и счета для бухгалтерии — закрываем рабочие задачи СТО и официальных представительств.</p>
             <Link to="/for-sto" className="mt-6 inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background text-foreground font-semibold">Получить КП <ArrowRight size={18} /></Link>
           </div>
           <div className="md:col-span-5 rounded-3xl bg-card border border-border p-8 md:p-10">
