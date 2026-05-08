@@ -146,8 +146,7 @@ function StoPage() {
               <input type="tel" placeholder="Телефон" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
               <input type="email" placeholder="Email" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
             </div>
-            <input placeholder="Объём закупок в месяц" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
-            <input placeholder="Бренды авто" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
+            <textarea placeholder="Комментарии" rows={4} className="px-4 py-3 rounded-xl border border-border bg-background outline-none focus:border-forest resize-none" />
             <button type="button" className="h-12 rounded-xl surface-forest font-semibold">Получить коммерческое предложение</button>
           </form>
         </div>
