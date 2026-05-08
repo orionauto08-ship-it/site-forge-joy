@@ -7,6 +7,8 @@ export const Route = createFileRoute("/contacts")({
     meta: [
       { title: "Контакты — Орионавто, Минск" },
       { name: "description", content: "Свяжитесь с Орионавто: телефон, email, Telegram, WhatsApp. Минск, Республика Беларусь." },
+      { property: "og:title", content: "Контакты Орионавто" },
+      { property: "og:description", content: "Минск. Телефон, email, Telegram, WhatsApp. Ответим в течение часа." },
     ],
   }),
   component: ContactsPage,
