@@ -112,7 +112,7 @@ function AboutPage() {
       <section className="container-page mt-16 grid md:grid-cols-3 gap-4">
         <div className="rounded-2xl surface-cream p-7">
           <h3 className="font-display font-bold text-xl">20 лет опыта в автобизнесе</h3>
-          <p className="mt-2 text-foreground/75 text-sm">Команда знает рынок изнутри: как проверить совместимость, как избежать подделок, как правильно подобрать деталь под VIN.</p>
+          <p className="mt-2 text-foreground/75 text-sm">Команда знает рынок изнутри: как проверить совместимость, как избежать подделок, как правильно подобрать деталь под автомобиль клиента.</p>
         </div>
         <div className="rounded-2xl surface-cream p-7">
           <h3 className="font-display font-bold text-xl">Принципиальная позиция</h3>

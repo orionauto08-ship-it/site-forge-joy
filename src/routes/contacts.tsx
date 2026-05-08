@@ -74,7 +74,7 @@ function ContactsPage() {
             <input placeholder="Имя" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
             <input type="tel" placeholder="Телефон" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
             <input type="email" placeholder="Email" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
-            <textarea placeholder="Сообщение / VIN / артикул" rows={5} className="px-4 py-3 rounded-xl border border-border bg-background outline-none focus:border-forest resize-none" />
+            <textarea placeholder="Сообщение / марка / модель / артикул" rows={5} className="px-4 py-3 rounded-xl border border-border bg-background outline-none focus:border-forest resize-none" />
             <label className="flex items-start gap-2 text-xs text-muted-foreground">
               <input type="checkbox" className="mt-0.5" /> Я согласен на обработку персональных данных согласно политике конфиденциальности.
             </label>
