@@ -1,38 +1,69 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
 import { Layout } from "@/components/site/Layout";
 import { Faq } from "@/components/site/Faq";
-import { Search, ShieldCheck, FileText, Award, Filter, ArrowRight } from "lucide-react";
+import { Search, ShieldCheck, FileText, Award, ArrowRight, Plus, Check } from "lucide-react";
+import { PRODUCTS, CATEGORIES, BRANDS, type PartCategory, type Product } from "@/lib/parts-catalog";
+import { useCart } from "@/lib/cart-store";
 
 export const Route = createFileRoute("/parts")({
   head: () => ({
     meta: [
-      { title: "Запчасти — оригинал с документами | Орионавто" },
-      { name: "description", content: "Каталог оригинальных автозапчастей: BYD, Zeekr, LiXiang, Changan, Chery, Voyah, Deepal, Leapmotor, Xiaomi и др. Фильтры, документы подлинности." },
+      { title: "Каталог запасных частей | Орионавто" },
+      { name: "description", content: "Каталог оригинальных автозапчастей: BYD, Zeekr, LiXiang, Changan, Chery, Voyah, Volkswagen, Audi и др. Корзина-заявка, документы подлинности, доставка." },
     ],
   }),
   component: PartsPage,
 });
 
-const categories = [
-  { t: "Масла и жидкости", d: "Моторные, антифризы, тормозные.", stock: true },
-  { t: "Группа ТО", d: "Фильтры, свечи, ремни.", stock: true },
-  { t: "Подвеска", d: "Амортизаторы, рычаги, опоры.", stock: true, badge: "Новое" },
-  { t: "Тормозная система", d: "Колодки, диски, суппорты.", stock: true, badge: "Новое" },
-  { t: "Лобовые стёкла", d: "Под заказ для большинства моделей.", stock: false },
-  { t: "Кузовные детали", d: "Под заказ по марке и модели.", stock: false },
-];
-
 const faq = [
   { q: "Как подтвердить оригинальность?", a: "Каждая позиция сопровождается сертификатами, декларациями соответствия или паспортами качества. Документы прилагаются к заказу." },
   { q: "Как подобрать нужную деталь?", a: "Укажите марку, модель, год выпуска и артикул (если есть) — мы проверим совместимость и предложим оригинальные варианты." },
-  { q: "Что есть в наличии?", a: "Масла, жидкости, группа ТО и ходовые позиции. Остальное — под заказ. Актуальный статус виден в каталоге." },
+  { q: "Как работает корзина?", a: "Корзина — это заявка на расчёт. Добавьте позиции, оставьте контакты — менеджер подтвердит наличие, сроки и итоговую цену с документами." },
   { q: "Какие сроки под заказ?", a: "Зависят от позиции и поставщика. Точные сроки согласовываем перед заказом." },
   { q: "Есть ли скидки для СТО?", a: "Да, до 10% за объём при регулярных закупках. Условия обсуждаем индивидуально." },
 ];
 
+type StockFilter = "all" | "in_stock" | "on_order";
+
 function PartsPage() {
+  const [query, setQuery] = useState("");
+  const [brand, setBrand] = useState<string | null>(null);
+  const [category, setCategory] = useState<PartCategory | null>(null);
+  const [stock, setStock] = useState<StockFilter>("all");
+  const { add, open: openCart, items } = useCart();
+  const [justAdded, setJustAdded] = useState<string | null>(null);
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return PRODUCTS.filter((p) => {
+      if (brand && p.brand !== brand) return false;
+      if (category && p.category !== category) return false;
+      if (stock !== "all" && p.stock !== stock) return false;
+      if (q) {
+        const hay = `${p.title} ${p.oem} ${p.brand} ${p.fits}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+  }, [query, brand, category, stock]);
+
+  const handleAdd = (p: Product) => {
+    add(p);
+    setJustAdded(p.id);
+    setTimeout(() => setJustAdded((id) => (id === p.id ? null : id)), 1500);
+  };
+
+  const reset = () => {
+    setQuery("");
+    setBrand(null);
+    setCategory(null);
+    setStock("all");
+  };
+
   return (
     <Layout>
+      {/* HERO */}
       <section className="container-page pt-10 md:pt-16">
         <div className="rounded-3xl surface-sand p-8 md:p-14">
           <span className="text-xs uppercase tracking-widest text-brown font-semibold">Каталог</span>
@@ -40,24 +71,27 @@ function PartsPage() {
             Оригинальные запасные части с подтверждённой подлинностью
           </h1>
           <p className="mt-4 text-foreground/75 max-w-2xl">
-            BYD, Zeekr, LiXiang, Changan, Chery, Voyah, Deepal, Leapmotor, Xiaomi · Volkswagen, Audi, Mazda, Kia, Renault.
+            BYD, Zeekr, LiXiang, Changan, Chery, Voyah · Volkswagen, Audi и не только. Соберите позиции в корзину — менеджер пришлёт прайс с документами.
           </p>
 
           <div className="mt-8 grid md:grid-cols-[1fr_auto] gap-3 max-w-3xl">
-            <div className="flex items-center gap-3 h-14 px-4 rounded-2xl bg-background border border-border">
+            <div className="flex items-center gap-3 h-14 px-4 rounded-2xl bg-background border border-border focus-within:border-forest transition-colors">
               <Search size={20} className="text-forest" />
-              <input className="flex-1 bg-transparent outline-none text-base" placeholder="Артикул или OEM" />
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="flex-1 bg-transparent outline-none text-base"
+                placeholder="Артикул, OEM или название"
+              />
             </div>
-            <button className="h-14 px-6 rounded-2xl surface-forest font-semibold inline-flex items-center justify-center gap-2">
-              Найти <ArrowRight size={18} />
+            <button
+              onClick={() => {
+                document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="h-14 px-6 rounded-2xl surface-forest font-semibold inline-flex items-center justify-center gap-2"
+            >
+              К результатам <ArrowRight size={18} />
             </button>
-          </div>
-
-          <div className="mt-4 flex flex-wrap gap-2 text-sm">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background/60 border border-border"><Filter size={14} /> Марка</span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background/60 border border-border"><Filter size={14} /> Модель</span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background/60 border border-border"><Filter size={14} /> Год</span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background/60 border border-border"><Filter size={14} /> Категория</span>
           </div>
         </div>
       </section>
@@ -77,29 +111,146 @@ function PartsPage() {
         ))}
       </section>
 
-      {/* Categories */}
-      <section className="container-page mt-16">
-        <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Категории каталога</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {categories.map((c) => (
-            <div key={c.t} className="rounded-2xl bg-card border border-border p-6 hover:-translate-y-0.5 transition-transform">
-              <div className="flex items-center justify-between gap-3">
-                <div className="font-display font-bold text-lg">{c.t}</div>
-                {c.stock ? (
-                  <span className="text-[11px] uppercase tracking-wider font-semibold text-forest bg-cream px-2 py-1 rounded-md">В наличии</span>
-                ) : (
-                  <span className="text-[11px] uppercase tracking-wider font-semibold text-warning bg-sand px-2 py-1 rounded-md">Под заказ</span>
-                )}
-              </div>
-              <div className="mt-1 text-sm text-foreground/70">{c.d}</div>
-              {c.badge && <span className="mt-3 inline-block text-[11px] uppercase tracking-wider font-semibold text-brown">{c.badge}</span>}
+      {/* CATALOG */}
+      <section id="catalog" className="container-page mt-16">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
+          <div>
+            <div className="text-xs uppercase tracking-widest text-brown font-semibold">Каталог</div>
+            <h2 className="mt-2 text-3xl md:text-4xl font-display font-bold">Запчасти в наличии и под заказ</h2>
+          </div>
+          <div className="text-sm text-foreground/60">
+            Найдено: <span className="font-semibold text-foreground">{filtered.length}</span> · в корзине: <span className="font-semibold text-foreground">{items.length}</span>
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-[260px_1fr] gap-6">
+          {/* Filters */}
+          <aside className="rounded-2xl bg-card border border-border p-5 h-fit lg:sticky lg:top-24">
+            <div className="flex items-center justify-between">
+              <div className="font-display font-bold">Фильтры</div>
+              <button onClick={reset} className="text-xs text-forest hover:underline">Сбросить</button>
             </div>
-          ))}
+
+            <div className="mt-5">
+              <div className="text-[11px] uppercase tracking-widest text-brown font-semibold mb-2">Наличие</div>
+              <div className="grid grid-cols-3 gap-1 rounded-lg bg-cream/60 p-1 text-xs font-medium">
+                {([
+                  { v: "all", l: "Все" },
+                  { v: "in_stock", l: "В наличии" },
+                  { v: "on_order", l: "Под заказ" },
+                ] as { v: StockFilter; l: string }[]).map((o) => (
+                  <button
+                    key={o.v}
+                    onClick={() => setStock(o.v)}
+                    className={`h-8 rounded-md transition-colors ${stock === o.v ? "bg-background shadow-sm text-forest font-semibold" : "text-foreground/70 hover:text-foreground"}`}
+                  >
+                    {o.l}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-5">
+              <div className="text-[11px] uppercase tracking-widest text-brown font-semibold mb-2">Категория</div>
+              <div className="flex flex-col gap-1">
+                {CATEGORIES.map((c) => (
+                  <button
+                    key={c}
+                    onClick={() => setCategory((cur) => (cur === c ? null : c))}
+                    className={`text-left px-3 py-2 rounded-lg text-sm transition-colors ${category === c ? "bg-cream text-forest font-semibold" : "hover:bg-cream/60"}`}
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-5">
+              <div className="text-[11px] uppercase tracking-widest text-brown font-semibold mb-2">Бренд</div>
+              <div className="flex flex-wrap gap-1.5">
+                {BRANDS.map((b) => (
+                  <button
+                    key={b}
+                    onClick={() => setBrand((cur) => (cur === b ? null : b))}
+                    className={`px-2.5 py-1.5 rounded-md text-xs font-semibold border transition-colors ${brand === b ? "border-forest bg-forest text-forest-foreground" : "border-border hover:border-forest hover:text-forest"}`}
+                  >
+                    {b}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </aside>
+
+          {/* Grid */}
+          <div>
+            {filtered.length === 0 ? (
+              <div className="rounded-2xl border border-dashed border-border p-10 text-center">
+                <div className="font-display font-bold text-lg">Ничего не найдено</div>
+                <p className="mt-2 text-sm text-foreground/60">Попробуйте сбросить фильтры или оставьте заявку — подберём вручную.</p>
+                <Link to="/contacts" className="mt-5 inline-flex items-center gap-2 h-11 px-5 rounded-xl surface-forest font-semibold text-sm">
+                  Запросить подбор <ArrowRight size={16} />
+                </Link>
+              </div>
+            ) : (
+              <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
+                {filtered.map((p) => (
+                  <article key={p.id} className="group rounded-2xl bg-card border border-border p-5 flex flex-col hover:border-forest/40 hover:-translate-y-0.5 transition-all">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="text-[10px] uppercase tracking-widest text-brown font-semibold">{p.brand} · {p.category}</div>
+                      {p.stock === "in_stock" ? (
+                        <span className="text-[10px] uppercase tracking-wider font-semibold text-forest bg-cream px-2 py-0.5 rounded-md whitespace-nowrap">В наличии</span>
+                      ) : (
+                        <span className="text-[10px] uppercase tracking-wider font-semibold text-brown bg-sand px-2 py-0.5 rounded-md whitespace-nowrap">Под заказ</span>
+                      )}
+                    </div>
+
+                    <h3 className="mt-3 font-display font-bold text-base leading-snug min-h-[3rem]">{p.title}</h3>
+
+                    <div className="mt-3 space-y-1 text-xs text-foreground/65">
+                      <div><span className="text-foreground/50">OEM:</span> <span className="font-mono">{p.oem}</span></div>
+                      <div><span className="text-foreground/50">Применимость:</span> {p.fits}</div>
+                    </div>
+
+                    {p.badge && (
+                      <span className="mt-3 inline-block w-fit text-[10px] uppercase tracking-wider font-semibold text-brown bg-cream px-2 py-0.5 rounded-md">{p.badge}</span>
+                    )}
+
+                    <div className="mt-5 flex items-center justify-between gap-3 pt-4 border-t border-border">
+                      <div>
+                        <div className="text-[10px] uppercase tracking-widest text-foreground/50">Цена</div>
+                        <div className="font-display font-bold text-lg">{p.price.toLocaleString("ru-BY")} BYN</div>
+                      </div>
+                      <button
+                        onClick={() => handleAdd(p)}
+                        className={`inline-flex items-center gap-1.5 h-10 px-4 rounded-xl text-sm font-semibold transition-colors ${justAdded === p.id ? "surface-cream text-forest" : "surface-forest hover:opacity-95"}`}
+                      >
+                        {justAdded === p.id ? (<><Check size={16} /> Добавлено</>) : (<><Plus size={16} /> В корзину</>)}
+                      </button>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+
+            {items.length > 0 && (
+              <div className="mt-6 rounded-2xl surface-forest p-5 flex flex-wrap items-center justify-between gap-3">
+                <div className="text-sm">
+                  В корзине {items.length} {items.length === 1 ? "позиция" : "позиций"} — отправьте заявку, и менеджер подтвердит наличие и пришлёт прайс с документами.
+                </div>
+                <button
+                  onClick={openCart}
+                  className="inline-flex items-center gap-2 h-11 px-5 rounded-xl bg-background text-foreground font-semibold text-sm hover:bg-background/90"
+                >
+                  Открыть корзину <ArrowRight size={16} />
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
       {/* Почему Орионавто */}
-      <section className="container-page mt-16">
+      <section className="container-page mt-20">
         <div className="grid lg:grid-cols-12 gap-6">
           <div className="lg:col-span-5">
             <div className="text-xs uppercase tracking-widest text-brown font-semibold">Почему Орионавто</div>
@@ -137,20 +288,6 @@ function PartsPage() {
               <div className="mt-2 font-semibold">{s}</div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* How we work */}
-      <section className="container-page mt-16 grid md:grid-cols-2 gap-4">
-        <div className="rounded-2xl surface-cream p-8">
-          <div className="text-xs uppercase tracking-widest text-brown font-semibold">Вариант 1</div>
-          <h3 className="mt-2 font-display font-bold text-2xl">Самостоятельный подбор</h3>
-          <p className="mt-2 text-foreground/75">Ищите по артикулу/OEM, фильтруйте по марке и модели, добавляйте в корзину-заявку.</p>
-        </div>
-        <div className="rounded-2xl surface-forest p-8">
-          <div className="text-xs uppercase tracking-widest font-semibold text-sand">Вариант 2</div>
-          <h3 className="mt-2 font-display font-bold text-2xl">Подбор через менеджера</h3>
-          <p className="mt-2 text-forest-foreground/85">Опишите задачу — подберём детали и пришлём прайс с документами.</p>
         </div>
       </section>
 

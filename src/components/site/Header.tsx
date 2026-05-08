@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ShoppingBag } from "lucide-react";
+import { useCart } from "@/lib/cart-store";
 
 const nav = [
   { to: "/parts", label: "Запчасти" },
@@ -13,6 +14,7 @@ const nav = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { count, open: openCart } = useCart();
   return (
     <header className="sticky top-0 z-40 backdrop-blur-md bg-background/80 border-b border-border">
       <div className="container-page flex items-center justify-between h-16 md:h-20">
@@ -41,18 +43,44 @@ export function Header() {
           <a href="tel:+375293223080" className="inline-flex items-center gap-2 text-sm font-medium hover:text-forest">
             <Phone size={16} /> +375 29 322 30 80
           </a>
+          <button
+            onClick={openCart}
+            aria-label="Корзина"
+            className="relative inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border hover:border-forest hover:text-forest transition-colors"
+          >
+            <ShoppingBag size={18} />
+            {count > 0 && (
+              <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full surface-forest text-[10px] font-bold inline-flex items-center justify-center">
+                {count}
+              </span>
+            )}
+          </button>
           <Link to="/contacts" className="inline-flex h-10 items-center rounded-xl px-4 surface-forest text-sm font-semibold hover:opacity-95">
             Заявка
           </Link>
         </div>
 
-        <button
-          className="lg:hidden h-10 w-10 inline-flex items-center justify-center rounded-lg border border-border"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Меню"
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="lg:hidden flex items-center gap-2">
+          <button
+            onClick={openCart}
+            aria-label="Корзина"
+            className="md:hidden relative h-10 w-10 inline-flex items-center justify-center rounded-lg border border-border"
+          >
+            <ShoppingBag size={18} />
+            {count > 0 && (
+              <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full surface-forest text-[10px] font-bold inline-flex items-center justify-center">
+                {count}
+              </span>
+            )}
+          </button>
+          <button
+            className="h-10 w-10 inline-flex items-center justify-center rounded-lg border border-border"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Меню"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {open && (
