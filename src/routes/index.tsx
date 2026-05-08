@@ -154,32 +154,6 @@ function HomePage() {
           </div>
         </div>
 
-        {/* Почему Орионавто — преимущества по запчастям */}
-        <div className="mt-10 grid lg:grid-cols-12 gap-6">
-          <div className="lg:col-span-5">
-            <div className="text-xs uppercase tracking-widest text-brown font-semibold">Почему Орионавто</div>
-            <h3 className="mt-3 text-3xl md:text-4xl font-display font-bold">
-              Ориентир в мире, где трудно отличить оригинал от копии.
-            </h3>
-            <p className="mt-4 text-foreground/70 max-w-md">
-              Работаем для СТО, детейлинг-студий и автовладельцев, которым важно ставить только то, в чём уверены. К каждой позиции — сертификаты, декларации и паспорта качества.
-            </p>
-          </div>
-          <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
-            {[
-              { i: FileText, t: "Документы", d: "Сертификаты, декларации соответствия, паспорта качества." },
-              { i: Award, t: "20 лет опыта", d: "Команда специалистов с многолетним стажем в автобизнесе." },
-              { i: ShieldCheck, t: "Без серых деталей", d: "Не везём аналоги, восстановленные и фабричные копии." },
-              { i: Truck, t: "Надёжная логистика", d: "Склад ходовых позиций и понятные сроки под заказ." },
-            ].map((f) => (
-              <div key={f.t} className="bento-card surface-cream !border-transparent">
-                <f.i size={28} className="text-forest" />
-                <div className="mt-4 font-display font-bold text-lg">{f.t}</div>
-                <div className="mt-1 text-sm text-foreground/70">{f.d}</div>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ───────────── НАПРАВЛЕНИЕ 02 — DIAMOND PROTECH ───────────── */}
@@ -258,32 +232,6 @@ function HomePage() {
             </div>
           ))}
         </div>
-
-        {/* Дополнительные услуги */}
-        <div className="mt-12">
-          <div className="flex items-end justify-between mb-6">
-            <div>
-              <div className="text-xs uppercase tracking-widest text-brown font-semibold">Дополнительные услуги</div>
-              <h3 className="mt-2 text-2xl md:text-3xl font-display font-bold">Полный сервис для вашего автомобиля</h3>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-3 gap-4">
-            {[
-              { t: "Консьерж-сервис", d: "Сопровождение по ремонту, регистрации, ГАИ и техосмотру — берём бюрократию на себя." },
-              { t: "Детейлинг", d: "Профессиональный уход за кузовом и салоном с применением премиальных составов." },
-              { t: "Оклейка плёнкой", d: "Защитные и стилистические покрытия: антигравийная плёнка, виниловая стилизация." },
-              { t: "Выкуп автомобиля", d: "Выкупаем ваш автомобиль по справедливой цене — оценка и оформление в один день." },
-              { t: "Trade-in", d: "Зачёт вашего автомобиля в стоимость нового — прозрачная оценка без скрытых условий." },
-              { t: "Лизинг", d: "Подбираем оптимальные условия лизинга от партнёрских банков — для физлиц и компаний." },
-            ].map((s) => (
-              <div key={s.t} className="rounded-2xl bg-card border border-border p-6 md:p-7 flex flex-col">
-                <div className="text-[11px] uppercase tracking-[0.2em] text-brown font-semibold">— Сервис</div>
-                <div className="mt-3 font-display font-bold text-lg">{s.t}</div>
-                <p className="mt-2 text-sm text-foreground/70 flex-1">{s.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* AUDIENCES */}
@@ -304,18 +252,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* HOW WE WORK */}
-      <section className="container-page mt-20">
-        <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Как мы работаем</h2>
-        <div className="grid md:grid-cols-5 gap-4">
-          {["Заявка", "Проверка и подбор", "Согласование", "Оплата", "Отгрузка / доставка"].map((s, i) => (
-            <div key={s} className="rounded-2xl bg-card border border-border p-5">
-              <div className="text-3xl font-display font-extrabold text-forest">0{i + 1}</div>
-              <div className="mt-2 font-semibold">{s}</div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* B2B + FINAL CTA */}
       <section className="container-page mt-20">
