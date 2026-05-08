@@ -1,29 +1,36 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/site/Layout";
 import { Faq } from "@/components/site/Faq";
-import diamondImg from "@/assets/diamond.jpg";
+import heroImg from "@/assets/diamond/body.jpg";
+import dpHero from "@/assets/diamond/hero.jpg";
+import p1 from "@/assets/diamond/p1.jpg";
+import p2 from "@/assets/diamond/p2.jpg";
+import p3 from "@/assets/diamond/p3.jpg";
+import p4 from "@/assets/diamond/p4.jpg";
+import p5 from "@/assets/diamond/p5.jpg";
+import p6 from "@/assets/diamond/p6.jpg";
 import { ArrowRight, Award, FlaskConical, Globe2, ShieldCheck } from "lucide-react";
 
 export const Route = createFileRoute("/diamond-protech")({
   head: () => ({
     meta: [
       { title: "Diamond ProTech — керамика и химия для детейлинга | Орионавто" },
-      { name: "description", content: "Эксклюзивный поставщик Diamond ProTech в РБ/РФ. Швейцарское производство. PRO-линейка с защитой до 10 лет, программы сертификации." },
-      { property: "og:image", content: "/src/assets/diamond.jpg" },
+      { name: "description", content: "Эксклюзивный поставщик Diamond ProTech в Беларуси. Швейцарское производство. PRO-линейка с защитой до 10 лет, программы сертификации." },
+      { property: "og:image", content: "/src/assets/diamond/body.jpg" },
     ],
   }),
   component: DiamondPage,
 });
 
-const products: { name: string; price: string; tag?: string }[] = [
-  { name: "Diamond Body Kit", price: "672 р.", tag: "До 18 месяцев защиты" },
-  { name: "Diamond Body 36 Kit", price: "744 р.", tag: "Усиленная формула" },
-  { name: "Diamond Wrap Kit", price: "708 р.", tag: "Для плёнок" },
-  { name: "Diamond Glass Kit", price: "552 р.", tag: "Гидрофобность стёкол" },
-  { name: "Diamond Wheels Kit", price: "624 р.", tag: "Защита дисков" },
-  { name: "Diamond Maintenance Kit", price: "432 р.", tag: "Уход и поддержание" },
-  { name: "Diamond Interior Kit", price: "552 р.", tag: "Текстиль и пластик" },
-  { name: "Diamond Leather Kit", price: "624 р.", tag: "Защита кожи" },
+const products: { name: string; price: string; tag?: string; img: string }[] = [
+  { name: "Diamond Body Kit", price: "672 р.", tag: "До 18 месяцев защиты", img: p1 },
+  { name: "Diamond Body 36 Kit", price: "744 р.", tag: "Усиленная формула", img: p2 },
+  { name: "Diamond Wrap Kit", price: "708 р.", tag: "Для плёнок", img: p3 },
+  { name: "Diamond Glass Kit", price: "552 р.", tag: "Гидрофобность стёкол", img: p4 },
+  { name: "Diamond Wheels Kit", price: "624 р.", tag: "Защита дисков", img: p5 },
+  { name: "Diamond Maintenance Kit", price: "432 р.", tag: "Уход и поддержание", img: p6 },
+  { name: "Diamond Interior Kit", price: "552 р.", tag: "Текстиль и пластик", img: dpHero },
+  { name: "Diamond Leather Kit", price: "624 р.", tag: "Защита кожи", img: p1 },
 ];
 
 const trustList = [
@@ -47,14 +54,14 @@ function DiamondPage() {
   return (
     <Layout>
       <section className="container-page pt-10 md:pt-16">
-        <div className="rounded-3xl overflow-hidden relative min-h-[480px]">
-          <img src={diamondImg} alt="Diamond ProTech керамика" className="absolute inset-0 h-full w-full object-cover" width={1400} height={1000} />
+        <div className="rounded-3xl overflow-hidden relative min-h-[480px] md:min-h-[560px]">
+          <img src={heroImg} alt="Diamond ProTech керамика" className="absolute inset-0 h-full w-full object-cover" width={1920} height={816} fetchPriority="high" />
           <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/55 to-transparent" />
           <div className="relative p-8 md:p-14 max-w-2xl text-background">
             <div className="text-xs uppercase tracking-widest text-sand font-semibold">Diamond ProTech</div>
             <h1 className="mt-3 text-4xl md:text-6xl font-display font-extrabold">Защита, которой доверяют профессионалы</h1>
             <p className="mt-4 text-background/85 max-w-xl">
-              Эксклюзив в РБ/РФ. Производство Швейцария (г. Поми). Патенты и лаборатория. Представлены в ЕС, США, Великобритании, Турции, Индии.
+              Эксклюзивный поставщик в Беларуси. Производство Швейцария (г. Поми). Патенты и собственная лаборатория. Бренд представлен в ЕС, США, Великобритании, Турции, Индии.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a href="#catalog" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background text-foreground font-semibold">Смотреть каталог <ArrowRight size={18} /></a>
@@ -67,7 +74,7 @@ function DiamondPage() {
       {/* Trust */}
       <section className="container-page mt-10 grid md:grid-cols-4 gap-4">
         {[
-          { i: ShieldCheck, t: "Эксклюзив РБ/РФ", d: "Прямые официальные поставки." },
+          { i: ShieldCheck, t: "Эксклюзив в Беларуси", d: "Прямые официальные поставки." },
           { i: FlaskConical, t: "Швейцария", d: "Производство, патенты, лаборатория." },
           { i: Globe2, t: "ЕС · США · UK · TR · IN", d: "География присутствия бренда." },
           { i: Award, t: "PRO до 10 лет", d: "Сертифицированные студии." },
@@ -134,8 +141,10 @@ function DiamondPage() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {products.map((p) => (
-            <div key={p.name} className="rounded-2xl bg-card border border-border p-6 flex flex-col">
-              <div className="aspect-square rounded-xl surface-cream mb-4 flex items-center justify-center text-brown font-display font-bold text-xl">DP</div>
+            <div key={p.name} className="rounded-2xl bg-card border border-border p-5 flex flex-col">
+              <div className="aspect-square rounded-xl overflow-hidden mb-4 bg-cream">
+                <img src={p.img} alt={p.name} loading="lazy" width={750} height={750} className="h-full w-full object-cover" />
+              </div>
               <div className="font-display font-semibold">{p.name}</div>
               <div className="text-xs text-muted-foreground mt-1">{p.tag}</div>
               <div className="mt-3 font-display font-bold text-xl">{p.price}</div>
