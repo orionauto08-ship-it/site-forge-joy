@@ -39,7 +39,7 @@ function HomePage() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
           <div>
             <div className="text-xs uppercase tracking-widest text-brown font-semibold">Что мы делаем</div>
-            <h2 className="mt-2 text-3xl md:text-4xl font-display font-bold">Три направления Орионавто</h2>
+            <h2 className="mt-2 text-3xl md:text-4xl font-display font-bold">Как мы можем быть полезны</h2>
           </div>
         </div>
         <div className="grid md:grid-cols-3 gap-4">
@@ -66,9 +66,9 @@ function HomePage() {
               i: Car,
               eyebrow: "Направление 03",
               t: "Авто под заказ",
-              d: "Подбор и поставка автомобилей из Китая, Европы и ОАЭ. Прозрачный договор, растаможка под ключ.",
+              d: "Подберём именно тот автомобиль, который вы хотите: доставим, растаможим, подготовим и привезём. Поможем поставить на учёт.",
               to: "/cars-order",
-              cta: "Получить расчёт",
+              cta: "Узнать детали",
               cls: "surface-brown",
             },
           ].map((c) => (
@@ -94,7 +94,7 @@ function HomePage() {
         <div className="flex items-end justify-between mb-6">
           <div>
             <div className="text-xs uppercase tracking-widest text-brown font-semibold">01 · Запасные части</div>
-            <h2 className="mt-2 text-3xl md:text-4xl font-display font-bold">Категории каталога</h2>
+            <h2 className="mt-2 text-2xl md:text-3xl font-display font-bold">Каталог запасных частей</h2>
           </div>
           <Link to="/parts" className="hidden md:inline-flex items-center gap-1 text-sm font-semibold text-forest">
             Весь каталог <ArrowRight size={16} />
@@ -102,38 +102,36 @@ function HomePage() {
         </div>
 
         <div className="bento">
-          <div className="bento-card surface-forest span-2 row-2 flex flex-col justify-between min-h-[260px]">
+          <div className="bento-card surface-forest span-2 row-2 flex flex-col justify-between min-h-[220px]">
             <div>
-              <Droplets size={32} />
-              <div className="mt-4 font-display font-bold text-2xl">Масла и технические жидкости</div>
-              <div className="mt-2 text-sm text-forest-foreground/85">Моторные масла, антифризы, трансмиссионные и тормозные жидкости — со склада.</div>
+              <Droplets size={28} />
+              <div className="mt-3 font-display font-bold text-xl">Масла и технические жидкости</div>
+              <div className="mt-2 text-sm text-forest-foreground/85">Моторные масла, антифризы, трансмиссионные и тормозные жидкости.</div>
             </div>
-            <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">В наличии <ArrowRight size={16} /></div>
+            <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold">В наличии <ArrowRight size={16} /></div>
           </div>
 
           <div className="bento-card surface-cream">
-            <Wrench size={28} className="text-brown" />
-            <div className="mt-4 font-display font-bold text-lg">Группа ТО</div>
+            <Wrench size={24} className="text-brown" />
+            <div className="mt-3 font-display font-bold text-base">Группа ТО</div>
             <div className="mt-1 text-sm text-foreground/70">Фильтры, свечи, ремни, расходники.</div>
           </div>
 
           <div className="bento-card">
-            <CircleDot size={28} className="text-forest" />
-            <div className="mt-4 font-display font-bold text-lg">Подвеска</div>
-            <div className="mt-1 text-sm text-foreground/70">Амортизаторы, рычаги, опоры. Со склада.</div>
-            <span className="mt-3 inline-block text-[11px] font-semibold uppercase tracking-wider text-forest bg-cream px-2 py-1 rounded-md">Новое — со склада</span>
+            <CircleDot size={24} className="text-forest" />
+            <div className="mt-3 font-display font-bold text-base">Подвеска</div>
+            <div className="mt-1 text-sm text-foreground/70">Амортизаторы, рычаги, опоры.</div>
           </div>
 
           <div className="bento-card surface-cream">
-            <Disc3 size={28} className="text-brown" />
-            <div className="mt-4 font-display font-bold text-lg">Тормозная система</div>
+            <Disc3 size={24} className="text-brown" />
+            <div className="mt-3 font-display font-bold text-base">Тормозная система</div>
             <div className="mt-1 text-sm text-foreground/70">Колодки, диски, суппорты.</div>
-            <span className="mt-3 inline-block text-[11px] font-semibold uppercase tracking-wider text-forest bg-background px-2 py-1 rounded-md">Новое — со склада</span>
           </div>
 
           <div className="bento-card surface-brown span-2">
-            <Car size={28} />
-            <div className="mt-4 font-display font-bold text-lg">Лобовые стёкла и кузов</div>
+            <Car size={24} />
+            <div className="mt-3 font-display font-bold text-base">Лобовые стёкла и кузов</div>
             <div className="mt-1 text-sm text-brown-foreground/85">Кузовные элементы под заказ — для большинства марок и моделей.</div>
           </div>
         </div>
@@ -195,7 +193,7 @@ function HomePage() {
           <img src={diamondImg} alt="Diamond ProTech керамическое покрытие" className="absolute inset-0 h-full w-full object-cover" loading="lazy" width={1400} height={1000} />
           <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/55 to-transparent" />
           <div className="relative p-8 md:p-14 max-w-2xl text-background">
-            <div className="text-xs uppercase tracking-widest text-sand font-semibold">Эксклюзив РБ/РФ · производство Швейцария</div>
+            <div className="text-xs uppercase tracking-widest text-sand font-semibold">Эксклюзив в РБ · производство Швейцария</div>
             <h3 className="mt-3 text-3xl md:text-5xl font-display font-bold">Защита, которой доверяют профессионалы</h3>
             <p className="mt-4 text-background/85">Патенты, лаборатория, PRO-линейка с защитой до 10 лет. Программы обучения и сертификации для детейлинг-студий.</p>
             <Link to="/diamond-protech" className="mt-6 inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background text-foreground font-semibold">
@@ -218,17 +216,21 @@ function HomePage() {
           </div>
           <div className="md:col-span-7 rounded-3xl surface-sand p-8 md:p-12 flex flex-col justify-between">
             <div>
-              <h3 className="text-2xl md:text-3xl font-display font-bold">Китай · Европа · ОАЭ. Под ключ.</h3>
-              <p className="mt-3 text-foreground/75 max-w-xl">Прозрачный договор, документы на ввоз, растаможка под ключ. 20 лет опыта в автобизнесе.</p>
+              <h3 className="text-2xl md:text-3xl font-display font-bold">Ваш автомобиль — под ключ</h3>
+              <p className="mt-3 text-foreground/75 max-w-xl">
+                Подберём именно тот автомобиль, который вы хотите — из Китая, Европы или ОАЭ.
+                Сопровождаем сделку на каждом этапе: проверка, прозрачный договор, доставка,
+                растаможка, предпродажная подготовка и постановка на учёт.
+              </p>
               <ul className="mt-5 grid sm:grid-cols-2 gap-2 text-sm text-foreground/80">
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Подбор и проверка</li>
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Прозрачный договор</li>
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Логистика под ключ</li>
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Растаможка и документы</li>
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Подбор по вашим требованиям</li>
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Проверка истории и состояния</li>
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Доставка и растаможка под ключ</li>
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Подготовка и постановка на учёт</li>
               </ul>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link to="/cars-order" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold">Получить расчёт <ArrowRight size={18} /></Link>
+              <Link to="/cars-order" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold">Узнать детали <ArrowRight size={18} /></Link>
               <Link to="/contacts" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background border border-border font-semibold">Задать вопрос</Link>
             </div>
           </div>
@@ -240,8 +242,8 @@ function HomePage() {
         <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Для кого мы работаем</h2>
         <div className="grid md:grid-cols-3 gap-4">
           {[
-            { t: "СТО", d: "Стабильные поставки оригинала. Скидки до 15% за объём. Гибкие условия для гарантийных кейсов.", to: "/for-sto", cta: "Получить КП" },
-            { t: "Автовладельцы", d: "Точный подбор оригинала, документы подлинности, прозрачные сроки.", to: "/parts", cta: "Подобрать запчасть" },
+            { t: "СТО", d: "Стабильные поставки оригинальных запчастей. Скидки до 10%. Ускорение поставки для гарантийных ремонтов.", to: "/for-sto", cta: "Получить КП" },
+            { t: "Автовладельцы", d: "Точный подбор оригинала с документами подлинности и прозрачными сроками. А ещё — поможем выбрать и привезти именно тот автомобиль, который вы хотите.", to: "/parts", cta: "Подобрать запчасть" },
             { t: "Детейлинг-студии", d: "Diamond ProTech, PRO-линейка, программы сертификации.", to: "/diamond-protech", cta: "Условия для студий" },
           ].map((a) => (
             <div key={a.t} className="rounded-2xl bg-card border border-border p-6 md:p-8 flex flex-col">
@@ -272,7 +274,7 @@ function HomePage() {
           <div className="md:col-span-7 rounded-3xl surface-forest p-8 md:p-12">
             <div className="text-xs uppercase tracking-widest font-semibold text-sand">Для B2B</div>
             <h2 className="mt-3 text-3xl md:text-4xl font-display font-bold">Стабильные поставки для СТО и дилеров</h2>
-            <p className="mt-4 text-forest-foreground/85 max-w-xl">Скидки до 15% за объём, индивидуальные условия для регулярных закупок, документы и счета для бухгалтерии — закрываем рабочие задачи СТО и официальных представительств.</p>
+            <p className="mt-4 text-forest-foreground/85 max-w-xl">Скидки до 10% за объём, индивидуальные условия для регулярных закупок, документы и счета для бухгалтерии — закрываем рабочие задачи СТО и официальных представительств.</p>
             <Link to="/for-sto" className="mt-6 inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background text-foreground font-semibold">Получить КП <ArrowRight size={18} /></Link>
           </div>
           <div className="md:col-span-5 rounded-3xl bg-card border border-border p-8 md:p-10">
