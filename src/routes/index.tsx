@@ -61,10 +61,68 @@ function HomePage() {
         </div>
       </section>
 
-      {/* CATEGORIES BENTO */}
+      {/* THREE DIRECTIONS OVERVIEW */}
       <section className="container-page mt-20">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
+          <div>
+            <div className="text-xs uppercase tracking-widest text-brown font-semibold">Что мы делаем</div>
+            <h2 className="mt-2 text-3xl md:text-4xl font-display font-bold">Три направления Орионавто</h2>
+          </div>
+        </div>
+        <div className="grid md:grid-cols-3 gap-4">
+          {[
+            {
+              i: Wrench,
+              eyebrow: "Направление 01",
+              t: "Запасные части",
+              d: "Оригинал с документами для СТО и автовладельцев. BYD, Zeekr, LiXiang, Changan, Chery и не только.",
+              to: "/parts",
+              cta: "Открыть каталог",
+              cls: "surface-cream",
+            },
+            {
+              i: Droplets,
+              eyebrow: "Направление 02",
+              t: "Diamond ProTech",
+              d: "Профессиональная химия и керамические покрытия для детейлинг-студий. Эксклюзив РБ/РФ.",
+              to: "/diamond-protech",
+              cta: "Смотреть продукты",
+              cls: "surface-forest",
+            },
+            {
+              i: Car,
+              eyebrow: "Направление 03",
+              t: "Авто под заказ",
+              d: "Подбор и поставка автомобилей из Китая, Европы и ОАЭ. Прозрачный договор, растаможка под ключ.",
+              to: "/cars-order",
+              cta: "Получить расчёт",
+              cls: "surface-brown",
+            },
+          ].map((c) => (
+            <Link
+              key={c.t}
+              to={c.to}
+              className={`rounded-3xl ${c.cls} p-7 md:p-8 flex flex-col group hover:-translate-y-1 transition-transform`}
+            >
+              <c.i size={32} />
+              <div className="mt-5 text-[11px] uppercase tracking-widest font-semibold opacity-70">{c.eyebrow}</div>
+              <div className="mt-1 font-display font-bold text-2xl">{c.t}</div>
+              <p className="mt-2 text-sm opacity-85 flex-1">{c.d}</p>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">
+                {c.cta} <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ───────────── НАПРАВЛЕНИЕ 01 — ЗАПАСНЫЕ ЧАСТИ ───────────── */}
+      <section className="container-page mt-24">
         <div className="flex items-end justify-between mb-6">
-          <h2 className="text-3xl md:text-4xl font-display font-bold">Категории</h2>
+          <div>
+            <div className="text-xs uppercase tracking-widest text-brown font-semibold">01 · Запасные части</div>
+            <h2 className="mt-2 text-3xl md:text-4xl font-display font-bold">Категории каталога</h2>
+          </div>
           <Link to="/parts" className="hidden md:inline-flex items-center gap-1 text-sm font-semibold text-forest">
             Весь каталог <ArrowRight size={16} />
           </Link>
@@ -100,34 +158,19 @@ function HomePage() {
             <span className="mt-3 inline-block text-[11px] font-semibold uppercase tracking-wider text-forest bg-background px-2 py-1 rounded-md">Новое — со склада</span>
           </div>
 
-          <div className="bento-card span-2">
-            <div className="text-xs uppercase tracking-widest text-brown font-semibold">Diamond ProTech</div>
-            <div className="mt-3 font-display font-bold text-2xl">Профессиональная химия и керамика</div>
-            <p className="mt-2 text-sm text-foreground/70 max-w-md">Эксклюзивный поставщик в РБ/РФ. Производство Швейцария. PRO-линейка с защитой до 10 лет.</p>
-            <Link to="/diamond-protech" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-forest">Подробнее <ArrowRight size={16} /></Link>
-          </div>
-
-          <div className="bento-card surface-brown">
+          <div className="bento-card surface-brown span-2">
             <Car size={28} />
             <div className="mt-4 font-display font-bold text-lg">Лобовые стёкла и кузов</div>
-            <div className="mt-1 text-sm text-brown-foreground/85">Кузовные элементы под заказ.</div>
-          </div>
-
-          <div className="bento-card span-2">
-            <div className="font-display font-bold text-lg">Авто под заказ</div>
-            <div className="mt-1 text-sm text-foreground/70">Китай · Европа · ОАЭ. Подбор, проверка, растаможка.</div>
-            <Link to="/cars-order" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-forest">Оставить заявку <ArrowRight size={16} /></Link>
+            <div className="mt-1 text-sm text-brown-foreground/85">Кузовные элементы под заказ — для большинства марок и моделей.</div>
           </div>
         </div>
-      </section>
 
-      {/* BRANDS */}
-      <section className="container-page mt-20">
-        <div className="rounded-3xl surface-cream p-8 md:p-12">
+        {/* Бренды — внутри направления 01 */}
+        <div className="mt-6 rounded-3xl surface-cream p-8 md:p-10">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
             <div>
               <div className="text-xs uppercase tracking-widest text-brown font-semibold">Фокус на брендах</div>
-              <h2 className="mt-2 text-2xl md:text-3xl font-display font-bold">Китайские бренды и не только</h2>
+              <h3 className="mt-2 text-2xl md:text-3xl font-display font-bold">Китайские бренды и не только</h3>
             </div>
             <Link to="/parts" className="text-sm font-semibold text-forest inline-flex items-center gap-1">Открыть каталог <ArrowRight size={16} /></Link>
           </div>
@@ -141,8 +184,59 @@ function HomePage() {
         </div>
       </section>
 
+      {/* ───────────── НАПРАВЛЕНИЕ 02 — DIAMOND PROTECH ───────────── */}
+      <section className="container-page mt-24">
+        <div className="mb-6">
+          <div className="text-xs uppercase tracking-widest text-brown font-semibold">02 · Diamond ProTech</div>
+          <h2 className="mt-2 text-3xl md:text-4xl font-display font-bold">Профессиональная защита кузова</h2>
+        </div>
+
+        <div className="rounded-3xl overflow-hidden relative min-h-[420px] md:min-h-[480px]">
+          <img src={diamondImg} alt="Diamond ProTech керамическое покрытие" className="absolute inset-0 h-full w-full object-cover" loading="lazy" width={1400} height={1000} />
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/55 to-transparent" />
+          <div className="relative p-8 md:p-14 max-w-2xl text-background">
+            <div className="text-xs uppercase tracking-widest text-sand font-semibold">Эксклюзив РБ/РФ · производство Швейцария</div>
+            <h3 className="mt-3 text-3xl md:text-5xl font-display font-bold">Защита, которой доверяют профессионалы</h3>
+            <p className="mt-4 text-background/85">Патенты, лаборатория, PRO-линейка с защитой до 10 лет. Программы обучения и сертификации для детейлинг-студий.</p>
+            <Link to="/diamond-protech" className="mt-6 inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background text-foreground font-semibold">
+              Смотреть продукты <ArrowRight size={18} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ───────────── НАПРАВЛЕНИЕ 03 — АВТО ПОД ЗАКАЗ ───────────── */}
+      <section className="container-page mt-24">
+        <div className="mb-6">
+          <div className="text-xs uppercase tracking-widest text-brown font-semibold">03 · Авто под заказ</div>
+          <h2 className="mt-2 text-3xl md:text-4xl font-display font-bold">Подбор и поставка автомобилей</h2>
+        </div>
+
+        <div className="grid md:grid-cols-12 gap-6">
+          <div className="md:col-span-5 rounded-3xl overflow-hidden relative min-h-[320px]">
+            <img src={carImg} alt="Автомобиль под заказ" className="absolute inset-0 h-full w-full object-cover" loading="lazy" width={1400} height={900} />
+          </div>
+          <div className="md:col-span-7 rounded-3xl surface-sand p-8 md:p-12 flex flex-col justify-between">
+            <div>
+              <h3 className="text-2xl md:text-3xl font-display font-bold">Китай · Европа · ОАЭ. Под ключ.</h3>
+              <p className="mt-3 text-foreground/75 max-w-xl">Прозрачный договор, документы на ввоз, растаможка под ключ. 20 лет опыта в автобизнесе.</p>
+              <ul className="mt-5 grid sm:grid-cols-2 gap-2 text-sm text-foreground/80">
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Подбор и проверка</li>
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Прозрачный договор</li>
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Логистика под ключ</li>
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Растаможка и документы</li>
+              </ul>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link to="/cars-order" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold">Получить расчёт <ArrowRight size={18} /></Link>
+              <Link to="/contacts" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background border border-border font-semibold">Задать вопрос</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* AUDIENCES */}
-      <section className="container-page mt-20">
+      <section className="container-page mt-24">
         <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">Для кого мы работаем</h2>
         <div className="grid md:grid-cols-3 gap-4">
           {[
@@ -172,22 +266,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* DIAMOND BANNER */}
-      <section className="container-page mt-20">
-        <div className="rounded-3xl overflow-hidden relative min-h-[420px] md:min-h-[480px]">
-          <img src={diamondImg} alt="Diamond ProTech керамическое покрытие" className="absolute inset-0 h-full w-full object-cover" loading="lazy" width={1400} height={1000} />
-          <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/55 to-transparent" />
-          <div className="relative p-8 md:p-14 max-w-2xl text-background">
-            <div className="text-xs uppercase tracking-widest text-sand font-semibold">Diamond ProTech · эксклюзив РБ/РФ</div>
-            <h2 className="mt-3 text-3xl md:text-5xl font-display font-bold">Защита, которой доверяют профессионалы</h2>
-            <p className="mt-4 text-background/80">Швейцарское производство. Патенты, лаборатория. PRO-линейка с защитой до 10 лет, программы обучения и сертификации.</p>
-            <Link to="/diamond-protech" className="mt-6 inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background text-foreground font-semibold">
-              Смотреть каталог <ArrowRight size={18} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* B2B + FINAL CTA */}
       <section className="container-page mt-20">
         <div className="grid md:grid-cols-12 gap-6 items-stretch">
@@ -207,21 +285,6 @@ function HomePage() {
               <button type="button" className="h-12 rounded-xl surface-forest font-semibold">Запросить подбор</button>
               <p className="text-[11px] text-muted-foreground">Нажимая, вы соглашаетесь с политикой конфиденциальности.</p>
             </form>
-          </div>
-        </div>
-      </section>
-
-      {/* CARS UNDER ORDER PEEK */}
-      <section className="container-page mt-20">
-        <div className="grid md:grid-cols-12 gap-6">
-          <div className="md:col-span-5 rounded-3xl overflow-hidden relative min-h-[280px]">
-            <img src={carImg} alt="Автомобиль под заказ" className="absolute inset-0 h-full w-full object-cover" loading="lazy" width={1400} height={900} />
-          </div>
-          <div className="md:col-span-7 rounded-3xl surface-sand p-8 md:p-12">
-            <div className="text-xs uppercase tracking-widest text-brown font-semibold">Авто под заказ</div>
-            <h2 className="mt-3 text-3xl md:text-4xl font-display font-bold">Китай · Европа · ОАЭ. Под ключ.</h2>
-            <p className="mt-3 text-foreground/75 max-w-xl">Прозрачный договор, документы на ввоз, растаможка под ключ. 20 лет опыта в автобизнесе.</p>
-            <Link to="/cars-order" className="mt-6 inline-flex items-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold">Получить расчёт <ArrowRight size={18} /></Link>
           </div>
         </div>
       </section>
