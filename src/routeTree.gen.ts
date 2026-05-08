@@ -9,8 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PartsRouteImport } from './routes/parts'
+import { Route as ForStoRouteImport } from './routes/for-sto'
+import { Route as DiamondProtechRouteImport } from './routes/diamond-protech'
+import { Route as ContactsRouteImport } from './routes/contacts'
+import { Route as CarsOrderRouteImport } from './routes/cars-order'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const PartsRoute = PartsRouteImport.update({
+  id: '/parts',
+  path: '/parts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForStoRoute = ForStoRouteImport.update({
+  id: '/for-sto',
+  path: '/for-sto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiamondProtechRoute = DiamondProtechRouteImport.update({
+  id: '/diamond-protech',
+  path: '/diamond-protech',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactsRoute = ContactsRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarsOrderRoute = CarsOrderRouteImport.update({
+  id: '/cars-order',
+  path: '/cars-order',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +55,116 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/cars-order': typeof CarsOrderRoute
+  '/contacts': typeof ContactsRoute
+  '/diamond-protech': typeof DiamondProtechRoute
+  '/for-sto': typeof ForStoRoute
+  '/parts': typeof PartsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/cars-order': typeof CarsOrderRoute
+  '/contacts': typeof ContactsRoute
+  '/diamond-protech': typeof DiamondProtechRoute
+  '/for-sto': typeof ForStoRoute
+  '/parts': typeof PartsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/cars-order': typeof CarsOrderRoute
+  '/contacts': typeof ContactsRoute
+  '/diamond-protech': typeof DiamondProtechRoute
+  '/for-sto': typeof ForStoRoute
+  '/parts': typeof PartsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/cars-order'
+    | '/contacts'
+    | '/diamond-protech'
+    | '/for-sto'
+    | '/parts'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/cars-order'
+    | '/contacts'
+    | '/diamond-protech'
+    | '/for-sto'
+    | '/parts'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/cars-order'
+    | '/contacts'
+    | '/diamond-protech'
+    | '/for-sto'
+    | '/parts'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CarsOrderRoute: typeof CarsOrderRoute
+  ContactsRoute: typeof ContactsRoute
+  DiamondProtechRoute: typeof DiamondProtechRoute
+  ForStoRoute: typeof ForStoRoute
+  PartsRoute: typeof PartsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/parts': {
+      id: '/parts'
+      path: '/parts'
+      fullPath: '/parts'
+      preLoaderRoute: typeof PartsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for-sto': {
+      id: '/for-sto'
+      path: '/for-sto'
+      fullPath: '/for-sto'
+      preLoaderRoute: typeof ForStoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/diamond-protech': {
+      id: '/diamond-protech'
+      path: '/diamond-protech'
+      fullPath: '/diamond-protech'
+      preLoaderRoute: typeof DiamondProtechRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacts': {
+      id: '/contacts'
+      path: '/contacts'
+      fullPath: '/contacts'
+      preLoaderRoute: typeof ContactsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cars-order': {
+      id: '/cars-order'
+      path: '/cars-order'
+      fullPath: '/cars-order'
+      preLoaderRoute: typeof CarsOrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +177,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CarsOrderRoute: CarsOrderRoute,
+  ContactsRoute: ContactsRoute,
+  DiamondProtechRoute: DiamondProtechRoute,
+  ForStoRoute: ForStoRoute,
+  PartsRoute: PartsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
