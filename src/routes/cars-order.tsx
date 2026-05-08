@@ -45,7 +45,7 @@ function CarsPage() {
         </div>
 
         <div className="mt-6 rounded-2xl bg-card border border-border px-5 py-4 flex flex-wrap gap-x-8 gap-y-2 text-sm text-foreground/80">
-          <span>20 лет опыта в автобизнесе</span><span>Прозрачный договор</span><span>Документы на ввоз</span><span>Растаможка под ключ</span>
+          <span>20 лет опыта в автобизнесе</span><span>Прозрачный договор</span><span>Документы на ввоз</span><span>Таможенное сопровождение</span>
         </div>
       </section>
 
