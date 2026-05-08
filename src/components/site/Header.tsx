@@ -19,11 +19,11 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 backdrop-blur-md bg-background/80 border-b border-border">
       <div className="container-page flex items-center justify-between h-16 md:h-20">
-        <Link to="/" className="flex items-center gap-2 group">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl surface-forest font-display font-bold">O</span>
+        <Link to="/" className="flex items-center gap-3 group">
+          <img src={logo} alt="Орионавто" className="h-10 w-10 object-contain" />
           <div className="leading-tight">
             <div className="font-display font-bold text-lg tracking-tight">Орионавто</div>
-            <div className="text-[11px] text-muted-foreground -mt-0.5">Ориентир в мире автомобилей</div>
+            <div className="text-[11px] text-muted-foreground -mt-0.5">Ориентир в автомобильном мире</div>
           </div>
         </Link>
 
