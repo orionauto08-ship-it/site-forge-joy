@@ -85,8 +85,8 @@ function AboutPage() {
       <section className="container-page mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { n: "20", t: "лет опыта", d: "Команда специалистов с многолетним стажем в автобизнесе." },
-          { n: "9+", t: "брендов привозим", d: "BYD, Zeekr, LiXiang, Changan, Chery, Voyah, Deepal, Leapmotor, Xiaomi и др." },
-          { n: "500+", t: "автомобилей поставлено", d: "Электромобили, гибриды и классические ДВС под ключ — от подбора до постановки на учёт." },
+          { n: "9+", t: "брендов по запчастям", d: "Привозим оригинальные запчасти для BYD, Zeekr, LiXiang, Changan, Chery, Voyah, Deepal, Leapmotor, Xiaomi и др." },
+          { n: "Под ключ", t: "автомобили под заказ", d: "Электромобили, гибриды и классические ДВС — от подбора до постановки на учёт." },
           { n: "100%", t: "оригинал", d: "Сертификаты, декларации соответствия, паспорта качества." },
         ].map((s) => (
           <div key={s.t} className="rounded-2xl bg-card border border-border p-8">
