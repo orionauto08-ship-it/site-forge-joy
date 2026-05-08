@@ -82,9 +82,9 @@ function AboutPage() {
       {/* Stats */}
       <section className="container-page mt-12 grid md:grid-cols-3 gap-4">
         {[
-          { n: "20", t: "лет опыта", d: "Команда из официальных дилерских центров." },
+          { n: "20", t: "лет опыта", d: "Команда специалистов с многолетним стажем в автобизнесе." },
           { n: "9+", t: "приоритетных брендов", d: "BYD, Zeekr, LiXiang, Changan, Chery, Voyah, Deepal, Leapmotor, Xiaomi." },
-          { n: "14", t: "дней авиадоставки", d: "Из Китая в Минск — для гарантийных кейсов." },
+          { n: "100%", t: "оригинал", d: "Сертификаты, декларации соответствия, паспорта качества." },
         ].map((s) => (
           <div key={s.t} className="rounded-2xl bg-card border border-border p-8">
             <div className="font-display font-extrabold text-5xl text-forest">{s.n}</div>
@@ -111,7 +111,7 @@ function AboutPage() {
       {/* Expertise */}
       <section className="container-page mt-16 grid md:grid-cols-3 gap-4">
         <div className="rounded-2xl surface-cream p-7">
-          <h3 className="font-display font-bold text-xl">20 лет опыта у официальных дилеров</h3>
+          <h3 className="font-display font-bold text-xl">20 лет опыта в автобизнесе</h3>
           <p className="mt-2 text-foreground/75 text-sm">Команда знает рынок изнутри: как проверить совместимость, как избежать подделок, как правильно подобрать деталь под VIN.</p>
         </div>
         <div className="rounded-2xl surface-cream p-7">
