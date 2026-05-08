@@ -32,34 +32,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* TRUST BLOCK */}
-      <section className="container-page mt-20">
-        <div className="grid lg:grid-cols-12 gap-6">
-          <div className="lg:col-span-5">
-            <div className="text-xs uppercase tracking-widest text-brown font-semibold">Почему Орионавто</div>
-            <h2 className="mt-3 text-3xl md:text-4xl font-display font-bold">
-              Ориентир в мире, где трудно отличить оригинал от копии.
-            </h2>
-            <p className="mt-4 text-foreground/70 max-w-md">
-              Работаем для СТО, детейлинг-студий и автовладельцев, которым важно ставить только то, в чём уверены. К каждой позиции — сертификаты, декларации и паспорта качества.
-            </p>
-          </div>
-          <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
-            {[
-              { i: FileText, t: "Документы", d: "Сертификаты, декларации соответствия, паспорта качества." },
-              { i: Award, t: "20 лет опыта", d: "Команда специалистов с многолетним стажем в автобизнесе." },
-              { i: ShieldCheck, t: "Без серых деталей", d: "Не везём аналоги, восстановленные и фабричные копии." },
-              { i: Truck, t: "Надёжная логистика", d: "Склад ходовых позиций и понятные сроки под заказ." },
-            ].map((f) => (
-              <div key={f.t} className="bento-card surface-cream !border-transparent">
-                <f.i size={28} className="text-forest" />
-                <div className="mt-4 font-display font-bold text-lg">{f.t}</div>
-                <div className="mt-1 text-sm text-foreground/70">{f.d}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* TRUST BLOCK moved into section 01 */}
 
       {/* THREE DIRECTIONS OVERVIEW */}
       <section className="container-page mt-20">
@@ -179,6 +152,33 @@ function HomePage() {
               <span key={b} className="px-4 py-2 rounded-xl bg-background border border-border font-display font-semibold text-sm hover:border-forest hover:text-forest transition-colors cursor-default">
                 {b}
               </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Почему Орионавто — преимущества по запчастям */}
+        <div className="mt-10 grid lg:grid-cols-12 gap-6">
+          <div className="lg:col-span-5">
+            <div className="text-xs uppercase tracking-widest text-brown font-semibold">Почему Орионавто</div>
+            <h3 className="mt-3 text-3xl md:text-4xl font-display font-bold">
+              Ориентир в мире, где трудно отличить оригинал от копии.
+            </h3>
+            <p className="mt-4 text-foreground/70 max-w-md">
+              Работаем для СТО, детейлинг-студий и автовладельцев, которым важно ставить только то, в чём уверены. К каждой позиции — сертификаты, декларации и паспорта качества.
+            </p>
+          </div>
+          <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+            {[
+              { i: FileText, t: "Документы", d: "Сертификаты, декларации соответствия, паспорта качества." },
+              { i: Award, t: "20 лет опыта", d: "Команда специалистов с многолетним стажем в автобизнесе." },
+              { i: ShieldCheck, t: "Без серых деталей", d: "Не везём аналоги, восстановленные и фабричные копии." },
+              { i: Truck, t: "Надёжная логистика", d: "Склад ходовых позиций и понятные сроки под заказ." },
+            ].map((f) => (
+              <div key={f.t} className="bento-card surface-cream !border-transparent">
+                <f.i size={28} className="text-forest" />
+                <div className="mt-4 font-display font-bold text-lg">{f.t}</div>
+                <div className="mt-1 text-sm text-foreground/70">{f.d}</div>
+              </div>
             ))}
           </div>
         </div>
