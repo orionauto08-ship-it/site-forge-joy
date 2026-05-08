@@ -41,7 +41,7 @@ export function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href="tel:+375293223080" className="inline-flex items-center gap-2 text-sm font-medium hover:text-forest">
+          <a href="tel:+375293223080" className="inline-flex items-center gap-2 text-sm font-medium hover:text-forest whitespace-nowrap">
             <Phone size={16} /> +375 29 322 30 80
           </a>
           <button
