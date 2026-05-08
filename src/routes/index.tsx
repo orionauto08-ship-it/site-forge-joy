@@ -207,33 +207,56 @@ function HomePage() {
       <section className="container-page mt-24">
         <div className="mb-6">
           <div className="text-xs uppercase tracking-widest text-brown font-semibold">03 · Авто под заказ</div>
-          <h2 className="mt-2 text-3xl md:text-4xl font-display font-bold">Подбор и поставка автомобилей</h2>
+          <h2 className="mt-2 text-3xl md:text-4xl font-display font-bold">Автомобиль вашей мечты — с безупречным сопровождением</h2>
         </div>
 
-        <div className="grid md:grid-cols-12 gap-6">
-          <div className="md:col-span-5 rounded-3xl overflow-hidden relative min-h-[320px]">
-            <img src={carImg} alt="Автомобиль под заказ" className="absolute inset-0 h-full w-full object-cover" loading="lazy" width={1400} height={900} />
-          </div>
-          <div className="md:col-span-7 rounded-3xl surface-sand p-8 md:p-12 flex flex-col justify-between">
-            <div>
-              <h3 className="text-2xl md:text-3xl font-display font-bold">Ваш автомобиль — под ключ</h3>
-              <p className="mt-3 text-foreground/75 max-w-xl">
-                Подберём именно тот автомобиль, который вы хотите — из Китая, Европы или ОАЭ.
-                Сопровождаем сделку на каждом этапе: проверка, прозрачный договор, доставка,
-                растаможка, предпродажная подготовка и постановка на учёт.
+        <div className="rounded-3xl overflow-hidden relative min-h-[520px] md:min-h-[640px] bg-foreground">
+          <img
+            src={carImg}
+            alt="Премиальный автомобиль под заказ"
+            className="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+            width={1920}
+            height={1080}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/70 via-transparent to-transparent" />
+
+          <div className="relative h-full p-8 md:p-14 flex flex-col justify-end text-background min-h-[520px] md:min-h-[640px]">
+            <div className="max-w-2xl">
+              <div className="text-[11px] uppercase tracking-[0.25em] text-background/70 font-semibold">Bespoke Delivery · Под ключ</div>
+              <h3 className="mt-4 text-3xl md:text-5xl font-display font-bold leading-[1.05]">
+                Создан для тех, кто привык выбирать лучшее.
+              </h3>
+              <p className="mt-5 text-background/85 text-lg max-w-xl">
+                Мы находим автомобиль вашей мечты — в любой комплектации, в любой точке мира. Сопровождаем безупречно: от выбора до момента, когда ключи окажутся в ваших руках.
               </p>
-              <ul className="mt-5 grid sm:grid-cols-2 gap-2 text-sm text-foreground/80">
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Подбор по вашим требованиям</li>
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Проверка истории и состояния</li>
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Доставка и растаможка под ключ</li>
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-forest" /> Подготовка и постановка на учёт</li>
-              </ul>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link to="/cars-order" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold">Узнать детали <ArrowRight size={18} /></Link>
-              <Link to="/contacts" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background border border-border font-semibold">Задать вопрос</Link>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link to="/cars-order" className="inline-flex items-center gap-2 h-12 px-7 rounded-xl bg-background text-foreground font-semibold hover:bg-background/90 transition-colors">
+                  Узнать детали <ArrowRight size={18} />
+                </Link>
+                <Link to="/contacts" className="inline-flex items-center gap-2 h-12 px-7 rounded-xl border border-background/40 text-background font-semibold hover:bg-background/10 transition-colors">
+                  Персональная консультация
+                </Link>
+              </div>
             </div>
           </div>
+        </div>
+
+        {/* Премиальные карточки услуг */}
+        <div className="mt-6 grid md:grid-cols-4 gap-4">
+          {[
+            { t: "Индивидуальный подбор", d: "Подбираем модель и комплектацию точно под ваши пожелания и стиль жизни." },
+            { t: "Глобальная логистика", d: "Поставка из Китая, Европы и ОАЭ. Прозрачный договор и контроль на каждом этапе." },
+            { t: "Растаможка под ключ", d: "Полное оформление документов и таможенное сопровождение без вашего участия." },
+            { t: "Подготовка и учёт", d: "Предпродажная подготовка, защита кузова и постановка на учёт за вас." },
+          ].map((c) => (
+            <div key={c.t} className="rounded-2xl bg-card border border-border p-6 md:p-7 flex flex-col">
+              <div className="text-[11px] uppercase tracking-[0.2em] text-brown font-semibold">— Сервис</div>
+              <div className="mt-3 font-display font-bold text-lg">{c.t}</div>
+              <p className="mt-2 text-sm text-foreground/70 flex-1">{c.d}</p>
+            </div>
+          ))}
         </div>
       </section>
 
