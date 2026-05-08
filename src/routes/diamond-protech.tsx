@@ -16,7 +16,8 @@ export const Route = createFileRoute("/diamond-protech")({
     meta: [
       { title: "Diamond ProTech — керамика и химия для детейлинга | Орионавто" },
       { name: "description", content: "Эксклюзивный поставщик Diamond ProTech в Беларуси. Швейцарское производство. PRO-линейка с защитой до 10 лет, программы сертификации." },
-      { property: "og:image", content: "/src/assets/diamond/body.jpg" },
+      { property: "og:title", content: "Diamond ProTech — защитные покрытия и детейлинг-химия" },
+      { property: "og:description", content: "Эксклюзив в Беларуси. Швейцарское производство, защита до 10 лет, обучение и сертификация студий." },
     ],
   }),
   component: DiamondPage,
