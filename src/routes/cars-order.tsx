@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 export const Route = createFileRoute("/cars-order")({
   head: () => ({
     meta: [
-      { title: "Авто под заказ — Китай, Европа, ОАЭ | Орионавто" },
+      { title: "Авто под заказ под ключ | Орионавто" },
       { name: "description", content: "Подбор, проверка, поставка автомобилей под заказ. Прозрачный договор, документы, растаможка под ключ." },
       { property: "og:image", content: "/src/assets/car-order.jpg" },
     ],
@@ -31,7 +31,7 @@ function CarsPage() {
           <div className="lg:col-span-7 rounded-3xl surface-sand p-8 md:p-14 flex flex-col justify-between min-h-[440px]">
             <div>
               <span className="text-xs uppercase tracking-widest text-brown font-semibold">Авто под заказ</span>
-              <h1 className="mt-4 text-4xl md:text-6xl font-display font-extrabold">Китай · Европа · ОАЭ. Под ключ.</h1>
+              <h1 className="mt-4 text-4xl md:text-6xl font-display font-extrabold">Автомобиль под ключ.</h1>
               <p className="mt-4 text-foreground/75 max-w-xl">Подбор, проверка, поставка. Прозрачный договор, документы на ввоз, растаможка под ключ.</p>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
