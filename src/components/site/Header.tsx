@@ -27,7 +27,7 @@ export function Header() {
           </div>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden xl:flex items-center gap-1">
           {nav.map((n) => (
             <Link
               key={n.to}
@@ -61,7 +61,7 @@ export function Header() {
           </Link>
         </div>
 
-        <div className="lg:hidden flex items-center gap-2">
+        <div className="xl:hidden flex items-center gap-2">
           <button
             onClick={openCart}
             aria-label="Корзина"
@@ -85,7 +85,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-border bg-background">
+        <div className="xl:hidden border-t border-border bg-background">
           <div className="container-page py-4 flex flex-col gap-1">
             {nav.map((n) => (
               <Link
