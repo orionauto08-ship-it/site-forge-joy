@@ -5,6 +5,7 @@ import { Faq } from "@/components/site/Faq";
 import { Search, ShieldCheck, FileText, Award, ArrowRight, Plus, Check } from "lucide-react";
 import { PRODUCTS, CATEGORIES, BRANDS, type PartCategory, type Product } from "@/lib/parts-catalog";
 import { useCart } from "@/lib/cart-store";
+import heroParts from "@/assets/hero-parts.jpg";
 
 export const Route = createFileRoute("/parts")({
   head: () => ({
@@ -65,33 +66,48 @@ function PartsPage() {
     <Layout>
       {/* HERO */}
       <section className="container-page pt-10 md:pt-16">
-        <div className="rounded-3xl surface-sand p-8 md:p-14">
-          <span className="text-xs uppercase tracking-widest text-brown font-semibold">Каталог</span>
-          <h1 className="mt-4 text-4xl md:text-6xl font-display font-extrabold tracking-tight max-w-3xl">
-            Оригинальные запасные части с подтверждённой подлинностью
-          </h1>
-          <p className="mt-4 text-foreground/75 max-w-2xl">
-            BYD, Zeekr, LiXiang, Changan, Chery, Voyah · Volkswagen, Audi и не только. Соберите позиции в корзину — менеджер пришлёт прайс с документами.
-          </p>
+        <div className="relative rounded-3xl overflow-hidden p-8 md:p-14 min-h-[440px] md:min-h-[520px]">
+          <img
+            src={heroParts}
+            alt="Каталог автозапчастей"
+            className="absolute inset-0 h-full w-full object-cover"
+            width={2000}
+            height={1200}
+            fetchPriority="high"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/65 to-foreground/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent md:hidden" />
 
-          <div className="mt-8 grid md:grid-cols-[1fr_auto] gap-3 max-w-3xl">
-            <div className="flex items-center gap-3 h-14 px-4 rounded-2xl bg-background border border-border focus-within:border-forest transition-colors">
-              <Search size={20} className="text-forest" />
-              <input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                className="flex-1 bg-transparent outline-none text-base"
-                placeholder="Артикул, OEM или название"
-              />
+          <div className="relative text-background">
+            <span className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sand font-semibold">
+              <span className="h-1.5 w-1.5 rounded-full bg-sand" /> Каталог
+            </span>
+            <h1 className="mt-5 text-4xl md:text-6xl font-display font-extrabold tracking-tight max-w-3xl leading-[1.05]">
+              Оригинальные запасные части <span className="text-sand">с подтверждённой подлинностью</span>
+            </h1>
+            <p className="mt-5 text-background/85 max-w-2xl">
+              BYD, Zeekr, LiXiang, Changan, Chery, Voyah · Volkswagen, Audi и не только. Соберите позиции в корзину — менеджер пришлёт прайс с документами.
+            </p>
+
+            <div className="mt-8 grid md:grid-cols-[1fr_auto] gap-3 max-w-3xl">
+              <div className="flex items-center gap-3 h-14 px-4 rounded-2xl bg-background border border-border focus-within:border-forest transition-colors text-foreground">
+                <Search size={20} className="text-forest" />
+                <input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  className="flex-1 bg-transparent outline-none text-base"
+                  placeholder="Артикул, OEM или название"
+                />
+              </div>
+              <button
+                onClick={() => {
+                  document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="h-14 px-6 rounded-2xl surface-forest font-semibold inline-flex items-center justify-center gap-2"
+              >
+                К результатам <ArrowRight size={18} />
+              </button>
             </div>
-            <button
-              onClick={() => {
-                document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="h-14 px-6 rounded-2xl surface-forest font-semibold inline-flex items-center justify-center gap-2"
-            >
-              К результатам <ArrowRight size={18} />
-            </button>
           </div>
         </div>
       </section>
