@@ -258,6 +258,32 @@ function HomePage() {
             </div>
           ))}
         </div>
+
+        {/* Дополнительные услуги */}
+        <div className="mt-12">
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <div className="text-xs uppercase tracking-widest text-brown font-semibold">Дополнительные услуги</div>
+              <h3 className="mt-2 text-2xl md:text-3xl font-display font-bold">Полный сервис для вашего автомобиля</h3>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              { t: "Консьерж-сервис", d: "Сопровождение по ремонту, регистрации, ГАИ и техосмотру — берём бюрократию на себя." },
+              { t: "Детейлинг", d: "Профессиональный уход за кузовом и салоном с применением премиальных составов." },
+              { t: "Оклейка плёнкой", d: "Защитные и стилистические покрытия: антигравийная плёнка, виниловая стилизация." },
+              { t: "Выкуп автомобиля", d: "Выкупаем ваш автомобиль по справедливой цене — оценка и оформление в один день." },
+              { t: "Trade-in", d: "Зачёт вашего автомобиля в стоимость нового — прозрачная оценка без скрытых условий." },
+              { t: "Лизинг", d: "Подбираем оптимальные условия лизинга от партнёрских банков — для физлиц и компаний." },
+            ].map((s) => (
+              <div key={s.t} className="rounded-2xl bg-card border border-border p-6 md:p-7 flex flex-col">
+                <div className="text-[11px] uppercase tracking-[0.2em] text-brown font-semibold">— Сервис</div>
+                <div className="mt-3 font-display font-bold text-lg">{s.t}</div>
+                <p className="mt-2 text-sm text-foreground/70 flex-1">{s.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* AUDIENCES */}
