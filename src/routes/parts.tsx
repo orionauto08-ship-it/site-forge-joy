@@ -1,11 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { Layout } from "@/components/site/Layout";
 import { Faq } from "@/components/site/Faq";
 import { Search, ShieldCheck, FileText, Award, ArrowRight, Plus, Check } from "lucide-react";
-import { PRODUCTS, CATEGORIES, BRANDS, type PartCategory, type Product } from "@/lib/parts-catalog";
+import type { Product } from "@/lib/parts-catalog";
+import { getParts } from "@/lib/parts.functions";
 import { useCart } from "@/lib/cart-store";
 import heroParts from "@/assets/hero-parts.jpg";
+
+const partsQueryOptions = () =>
+  queryOptions({
+    queryKey: ["parts"],
+    queryFn: () => getParts(),
+    staleTime: 5 * 60 * 1000,
+  });
 
 export const Route = createFileRoute("/parts")({
   head: () => ({
@@ -16,6 +25,7 @@ export const Route = createFileRoute("/parts")({
       { property: "og:description", content: "Запчасти под заказ и в наличии для китайских и европейских брендов. С документами подлинности." },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(partsQueryOptions()),
   component: PartsPage,
 });
 
@@ -30,26 +40,41 @@ const faq = [
 type StockFilter = "all" | "in_stock" | "on_order";
 
 function PartsPage() {
+  const { data: products } = useSuspenseQuery(partsQueryOptions());
+
   const [query, setQuery] = useState("");
   const [brand, setBrand] = useState<string | null>(null);
-  const [category, setCategory] = useState<PartCategory | null>(null);
+  const [category, setCategory] = useState<string | null>(null);
   const [stock, setStock] = useState<StockFilter>("all");
   const { add, open: openCart, items } = useCart();
   const [justAdded, setJustAdded] = useState<string | null>(null);
 
+  const { categories, brands } = useMemo(() => {
+    const cats = new Map<string, number>();
+    const brs = new Map<string, number>();
+    for (const p of products) {
+      cats.set(p.category, (cats.get(p.category) ?? 0) + 1);
+      brs.set(p.brand, (brs.get(p.brand) ?? 0) + 1);
+    }
+    return {
+      categories: Array.from(cats.entries()).sort((a, b) => b[1] - a[1]).map(([c]) => c),
+      brands: Array.from(brs.entries()).sort((a, b) => b[1] - a[1]).map(([b]) => b),
+    };
+  }, [products]);
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return PRODUCTS.filter((p) => {
+    return products.filter((p) => {
       if (brand && p.brand !== brand) return false;
       if (category && p.category !== category) return false;
       if (stock !== "all" && p.stock !== stock) return false;
       if (q) {
-        const hay = `${p.title} ${p.oem} ${p.brand} ${p.fits}`.toLowerCase();
+        const hay = `${p.title} ${p.oem} ${p.oemEng ?? ""} ${p.brand} ${p.fits}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
     });
-  }, [query, brand, category, stock]);
+  }, [products, query, brand, category, stock]);
 
   const handleAdd = (p: Product) => {
     add(p);
@@ -135,6 +160,7 @@ function PartsPage() {
           <div>
             <div className="text-xs uppercase tracking-widest text-brown font-semibold">Каталог</div>
             <h2 className="mt-2 text-3xl md:text-4xl font-display font-bold">Запчасти в наличии и под заказ</h2>
+            <p className="mt-2 text-sm text-foreground/60">Всего в базе: <span className="font-semibold text-foreground">{products.length}</span> позиций</p>
           </div>
           <div className="text-sm text-foreground/60">
             Найдено: <span className="font-semibold text-foreground">{filtered.length}</span> · в корзине: <span className="font-semibold text-foreground">{items.length}</span>
@@ -170,8 +196,8 @@ function PartsPage() {
 
             <div className="mt-5">
               <div className="text-[11px] uppercase tracking-widest text-brown font-semibold mb-2">Категория</div>
-              <div className="flex flex-col gap-1">
-                {CATEGORIES.map((c) => (
+              <div className="flex flex-col gap-1 max-h-[360px] overflow-y-auto pr-1">
+                {categories.map((c) => (
                   <button
                     key={c}
                     onClick={() => setCategory((cur) => (cur === c ? null : c))}
@@ -186,7 +212,7 @@ function PartsPage() {
             <div className="mt-5">
               <div className="text-[11px] uppercase tracking-widest text-brown font-semibold mb-2">Бренд</div>
               <div className="flex flex-wrap gap-1.5">
-                {BRANDS.map((b) => (
+                {brands.map((b) => (
                   <button
                     key={b}
                     onClick={() => setBrand((cur) => (cur === b ? null : b))}
@@ -225,18 +251,17 @@ function PartsPage() {
                     <h3 className="mt-3 font-display font-bold text-base leading-snug min-h-[3rem]">{p.title}</h3>
 
                     <div className="mt-3 space-y-1 text-xs text-foreground/65">
-                      <div><span className="text-foreground/50">OEM:</span> <span className="font-mono">{p.oem}</span></div>
-                      <div><span className="text-foreground/50">Применимость:</span> {p.fits}</div>
+                      {p.oem && <div><span className="text-foreground/50">OEM:</span> <span className="font-mono">{p.oem}</span></div>}
+                      {p.oemEng && <div><span className="text-foreground/50">Инж. №:</span> <span className="font-mono">{p.oemEng}</span></div>}
+                      {p.fits && <div><span className="text-foreground/50">Применимость:</span> {p.fits}</div>}
                     </div>
-
-                    {p.badge && (
-                      <span className="mt-3 inline-block w-fit text-[10px] uppercase tracking-wider font-semibold text-brown bg-cream px-2 py-0.5 rounded-md">{p.badge}</span>
-                    )}
 
                     <div className="mt-5 flex items-center justify-between gap-3 pt-4 border-t border-border">
                       <div>
                         <div className="text-[10px] uppercase tracking-widest text-foreground/50">Цена</div>
-                        <div className="font-display font-bold text-lg">{p.price.toLocaleString("ru-BY")} BYN</div>
+                        <div className="font-display font-bold text-lg">
+                          {p.price != null ? `${p.price.toLocaleString("ru-BY")} BYN` : "По запросу"}
+                        </div>
                       </div>
                       <button
                         onClick={() => handleAdd(p)}
@@ -315,12 +340,11 @@ function PartsPage() {
         <div className="rounded-3xl surface-sand p-8 md:p-12 flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
           <div>
             <h3 className="text-2xl md:text-3xl font-display font-bold">Нужен точный подбор или коммерческое предложение?</h3>
-            <p className="text-foreground/75 mt-1">Менеджер ответит в течение рабочего часа.</p>
+            <p className="mt-2 text-foreground/80 max-w-xl">Оставьте заявку — соберём предложение под вашу модель и бюджет.</p>
           </div>
-          <div className="flex flex-wrap gap-2">
-            <Link to="/contacts" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold">Запросить подбор <ArrowRight size={18} /></Link>
-            <Link to="/for-sto" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background border border-border font-semibold">Получить прайс</Link>
-          </div>
+          <Link to="/contacts" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold">
+            Связаться <ArrowRight size={18} />
+          </Link>
         </div>
       </section>
     </Layout>
