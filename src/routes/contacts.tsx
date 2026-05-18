@@ -46,7 +46,7 @@ function ContactsPage() {
             { i: Phone, t: "Телефон", v: "+375 29 322 30 80", href: "tel:+375293223080" },
             { i: Mail, t: "Email", v: "info@orionavto.by", href: "mailto:info@orionavto.by" },
             
-            { i: MapPin, t: "Офис", v: "Минск, пр-т Победителей, 127, офис 310", href: "#" },
+            { i: MapPin, t: "Офис", v: "Минск, пр-т Победителей, 127, офис 310", href: "https://yandex.by/maps/?text=%D0%9C%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D0%BF%D1%80-%D1%82%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9%2C%20127", target: "_blank", rel: "noopener noreferrer" },
           ].map((c) => (
             <a key={c.t} href={c.href} className="block rounded-2xl bg-card border border-border p-6 hover:-translate-y-0.5 transition-transform">
               <div className="flex items-center gap-4">
