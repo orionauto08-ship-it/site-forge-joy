@@ -142,9 +142,10 @@ export function CartDrawer() {
               />
               <button
                 type="submit"
-                className="w-full h-12 rounded-xl surface-forest font-semibold inline-flex items-center justify-center gap-2"
+                disabled={submitting}
+                className="w-full h-12 rounded-xl surface-forest font-semibold inline-flex items-center justify-center gap-2 disabled:opacity-60"
               >
-                Отправить заявку
+                {submitting ? (<><Loader2 size={16} className="animate-spin" /> Отправляем…</>) : "Отправить заявку"}
               </button>
               <button
                 type="button"
