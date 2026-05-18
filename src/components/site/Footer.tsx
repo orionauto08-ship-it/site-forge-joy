@@ -28,8 +28,7 @@ export function Footer() {
             <li><Link to="/about" className="hover:text-forest">О компании</Link></li>
             <li><Link to="/contacts" className="hover:text-forest">Контакты</Link></li>
             <li><a href="#" className="hover:text-forest">Политика конфиденциальности</a></li>
-            <li><a href="#" className="hover:text-forest">Оферта</a></li>
-            <li><a href="#" className="hover:text-forest">Куки-политика</a></li>
+            <li><a href="#" className="hover:text-forest">Политика Cookie</a></li>
           </ul>
         </div>
         <div>
