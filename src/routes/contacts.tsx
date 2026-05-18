@@ -45,7 +45,7 @@ function ContactsPage() {
           {[
             { i: Phone, t: "Телефон", v: "+375 29 322 30 80", href: "tel:+375293223080" },
             { i: Mail, t: "Email", v: "info@orionavto.by", href: "mailto:info@orionavto.by" },
-            { i: MessageCircle, t: "Telegram / WhatsApp", v: "Написать в мессенджере", href: "#" },
+            
             { i: MapPin, t: "Офис", v: "Минск, пр-т Победителей, 127, офис 310", href: "#" },
           ].map((c) => (
             <a key={c.t} href={c.href} className="block rounded-2xl bg-card border border-border p-6 hover:-translate-y-0.5 transition-transform">
