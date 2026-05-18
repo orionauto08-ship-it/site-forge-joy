@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/site/Layout";
 import { Faq } from "@/components/site/Faq";
-import { ArrowRight, Plane, Percent, FileText, Wrench, ShieldCheck, Award, Boxes, Clock, Coins } from "lucide-react";
+import { ArrowRight, Plane, Percent, FileText, Wrench, ShieldCheck, Award, Boxes, Clock, Coins, Loader2, CheckCircle2 } from "lucide-react";
+import { submitLead } from "@/lib/submit-lead";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/for-sto")({
   head: () => ({
