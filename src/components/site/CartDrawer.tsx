@@ -42,6 +42,7 @@ export function CartDrawer() {
         setSubmitted(false);
         setPhone("");
         setName("");
+        setAgree(false);
         close();
       }, 2200);
     } catch (err) {
