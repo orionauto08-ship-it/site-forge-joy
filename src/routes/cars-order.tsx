@@ -197,6 +197,7 @@ function CarsPage() {
                 </ul>
                 <Link
                   to="/contacts"
+                  search={{ source: "cars", model: `${c.brand} ${c.model}` }}
                   className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-sand"
                 >
                   Узнать о поставке <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
