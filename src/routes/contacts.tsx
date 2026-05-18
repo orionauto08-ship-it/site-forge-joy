@@ -91,10 +91,14 @@ function ContactsPage() {
 }
 
 function ContactForm() {
+  const { source, model } = Route.useSearch();
+  const leadSource: LeadSource = source ?? "contacts";
+  const initialMessage = model ? `Интересует автомобиль: ${model}` : "";
+
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(initialMessage);
   const [agree, setAgree] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
@@ -109,7 +113,7 @@ function ContactForm() {
     setSubmitting(true);
     try {
       await submitLead({
-        source: "contacts",
+        source: leadSource,
         name,
         phone,
         email: email || null,
