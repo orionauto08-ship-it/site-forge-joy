@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { useCart } from "@/lib/cart-store";
 import { Minus, Plus, Trash2, ShoppingBag, CheckCircle2, Loader2 } from "lucide-react";
@@ -11,6 +12,7 @@ export function CartDrawer() {
   const [submitting, setSubmitting] = useState(false);
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
+  const [agree, setAgree] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
