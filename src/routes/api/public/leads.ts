@@ -11,7 +11,7 @@ const LeadItemSchema = z.object({
 });
 
 const LeadSchema = z.object({
-  source: z.enum(["cart", "contacts", "parts"]).default("contacts"),
+  source: z.enum(["cart", "contacts", "parts", "cars"]).default("contacts"),
   name: z.string().trim().min(1).max(120),
   phone: z.string().trim().min(3).max(40),
   email: z.string().trim().email().max(200).optional().or(z.literal("")).nullable(),
