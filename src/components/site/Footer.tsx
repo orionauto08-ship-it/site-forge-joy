@@ -46,10 +46,6 @@ export function Footer() {
               <span className="block text-foreground/80">Факт. адрес:</span>
               220062, г. Минск, пр-т Победителей, д. 127, 2 этаж, офис 310
             </li>
-            <li className="flex gap-3 pt-2">
-              <a href="#" className="px-3 py-1.5 rounded-lg surface-forest text-xs font-medium">Telegram</a>
-              <a href="#" className="px-3 py-1.5 rounded-lg surface-brown text-xs font-medium">WhatsApp</a>
-            </li>
           </ul>
         </div>
       </div>
