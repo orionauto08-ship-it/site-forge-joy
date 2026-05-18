@@ -28,8 +28,7 @@ export function Footer() {
             <li><Link to="/about" className="hover:text-forest">О компании</Link></li>
             <li><Link to="/contacts" className="hover:text-forest">Контакты</Link></li>
             <li><a href="#" className="hover:text-forest">Политика конфиденциальности</a></li>
-            <li><a href="#" className="hover:text-forest">Оферта</a></li>
-            <li><a href="#" className="hover:text-forest">Куки-политика</a></li>
+            <li><a href="#" className="hover:text-forest">Политика Cookie</a></li>
           </ul>
         </div>
         <div>
@@ -46,10 +45,6 @@ export function Footer() {
             <li className="text-muted-foreground">
               <span className="block text-foreground/80">Факт. адрес:</span>
               220062, г. Минск, пр-т Победителей, д. 127, 2 этаж, офис 310
-            </li>
-            <li className="flex gap-3 pt-2">
-              <a href="#" className="px-3 py-1.5 rounded-lg surface-forest text-xs font-medium">Telegram</a>
-              <a href="#" className="px-3 py-1.5 rounded-lg surface-brown text-xs font-medium">WhatsApp</a>
             </li>
           </ul>
         </div>
