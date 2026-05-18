@@ -184,15 +184,24 @@ function StoPage() {
             <h2 className="text-3xl font-display font-bold">Готовы работать стабильно?</h2>
             <p className="mt-3 text-foreground/75">Заполните форму — пришлём прайс и условия в течение рабочего дня.</p>
           </div>
-          <form className="grid gap-3">
-            <input placeholder="Компания" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
-            <input placeholder="Контактное лицо" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
+          <form onSubmit={onSubmit} className="grid gap-3">
+            <input value={company} onChange={(e) => setCompany(e.target.value)} maxLength={120} placeholder="Компания" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
+            <input value={name} onChange={(e) => setName(e.target.value)} required maxLength={120} placeholder="Контактное лицо" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
             <div className="grid grid-cols-2 gap-3">
-              <input type="tel" placeholder="Телефон" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
-              <input type="email" placeholder="Email" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
+              <input value={phone} onChange={(e) => setPhone(e.target.value)} required maxLength={40} type="tel" placeholder="Телефон" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
+              <input value={email} onChange={(e) => setEmail(e.target.value)} maxLength={200} type="email" placeholder="Email" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
             </div>
-            <textarea placeholder="Комментарии" rows={4} className="px-4 py-3 rounded-xl border border-border bg-background outline-none focus:border-forest resize-none" />
-            <button type="button" className="h-12 rounded-xl surface-forest font-semibold">Получить коммерческое предложение</button>
+            <textarea value={comments} onChange={(e) => setComments(e.target.value)} maxLength={1500} placeholder="Комментарии" rows={4} className="px-4 py-3 rounded-xl border border-border bg-background outline-none focus:border-forest resize-none" />
+            <label className="flex items-start gap-2 text-xs text-foreground/70 leading-snug">
+              <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} required className="mt-0.5 shrink-0" />
+              <span>
+                Я согласен на обработку персональных данных согласно{" "}
+                <Link to="/privacy-policy" className="underline hover:text-forest">Политике</Link>.
+              </span>
+            </label>
+            <button type="submit" disabled={submitting} className="h-12 rounded-xl surface-forest font-semibold inline-flex items-center justify-center gap-2 disabled:opacity-60">
+              {submitting ? (<><Loader2 size={16} className="animate-spin" /> Отправляем…</>) : done ? (<><CheckCircle2 size={16} /> Отправлено</>) : "Получить коммерческое предложение"}
+            </button>
           </form>
         </div>
       </section>
