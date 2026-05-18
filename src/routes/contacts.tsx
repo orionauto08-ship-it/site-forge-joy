@@ -72,21 +72,72 @@ function ContactsPage() {
           </div>
         </div>
 
-        <div className="rounded-3xl bg-card border border-border p-8 h-fit sticky top-24">
-          <h2 className="text-2xl font-display font-bold">Оставить заявку</h2>
-          <p className="text-sm text-foreground/70 mt-1">Опишите задачу — подберём решение.</p>
-          <form className="mt-5 grid gap-3">
-            <input placeholder="Имя" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
-            <input type="tel" placeholder="Телефон" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
-            <input type="email" placeholder="Email" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
-            <textarea placeholder="Сообщение / марка / модель / артикул" rows={5} className="px-4 py-3 rounded-xl border border-border bg-background outline-none focus:border-forest resize-none" />
-            <label className="flex items-start gap-2 text-xs text-muted-foreground">
-              <input type="checkbox" className="mt-0.5" /> Я согласен на обработку персональных данных согласно политике конфиденциальности.
-            </label>
-            <button type="button" className="h-12 rounded-xl surface-forest font-semibold">Отправить</button>
-          </form>
-        </div>
+        <ContactForm />
       </section>
     </Layout>
+  );
+}
+
+function ContactForm() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [agree, setAgree] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [done, setDone] = useState(false);
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!agree) {
+      toast.error("Подтвердите согласие на обработку персональных данных.");
+      return;
+    }
+    if (submitting) return;
+    setSubmitting(true);
+    try {
+      await submitLead({
+        source: "contacts",
+        name,
+        phone,
+        email: email || null,
+        message: message || null,
+      });
+      setDone(true);
+      setName(""); setPhone(""); setEmail(""); setMessage(""); setAgree(false);
+    } catch (err) {
+      console.error(err);
+      toast.error("Не удалось отправить заявку. Попробуйте позвонить нам.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="rounded-3xl bg-card border border-border p-8 h-fit sticky top-24">
+      <h2 className="text-2xl font-display font-bold">Оставить заявку</h2>
+      <p className="text-sm text-foreground/70 mt-1">Опишите задачу — подберём решение.</p>
+      {done ? (
+        <div className="mt-6 rounded-2xl surface-cream p-6 text-center">
+          <CheckCircle2 className="mx-auto text-forest" size={36} />
+          <div className="mt-3 font-display font-bold text-lg">Заявка принята</div>
+          <p className="mt-1 text-sm text-foreground/70">Свяжемся с вами в ближайшее время.</p>
+          <button onClick={() => setDone(false)} className="mt-4 text-sm text-forest hover:underline">Отправить ещё одну</button>
+        </div>
+      ) : (
+        <form onSubmit={onSubmit} className="mt-5 grid gap-3">
+          <input value={name} onChange={(e) => setName(e.target.value)} required maxLength={120} placeholder="Имя" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
+          <input value={phone} onChange={(e) => setPhone(e.target.value)} required maxLength={40} type="tel" placeholder="Телефон" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
+          <input value={email} onChange={(e) => setEmail(e.target.value)} maxLength={200} type="email" placeholder="Email" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
+          <textarea value={message} onChange={(e) => setMessage(e.target.value)} maxLength={2000} placeholder="Сообщение / марка / модель / артикул" rows={5} className="px-4 py-3 rounded-xl border border-border bg-background outline-none focus:border-forest resize-none" />
+          <label className="flex items-start gap-2 text-xs text-muted-foreground">
+            <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} className="mt-0.5" /> Я согласен на обработку персональных данных согласно политике конфиденциальности.
+          </label>
+          <button type="submit" disabled={submitting} className="h-12 rounded-xl surface-forest font-semibold inline-flex items-center justify-center gap-2 disabled:opacity-60">
+            {submitting ? (<><Loader2 size={16} className="animate-spin" /> Отправляем…</>) : "Отправить"}
+          </button>
+        </form>
+      )}
+    </div>
   );
 }
