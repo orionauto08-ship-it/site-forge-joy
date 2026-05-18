@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/site/Layout";
 import { Faq } from "@/components/site/Faq";
-import { ArrowRight, Plane, Percent, FileText, Wrench, ShieldCheck, Award, Boxes, Clock, Coins } from "lucide-react";
+import { ArrowRight, Plane, Percent, FileText, Wrench, ShieldCheck, Award, Boxes, Clock, Coins, Loader2, CheckCircle2 } from "lucide-react";
+import { submitLead } from "@/lib/submit-lead";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/for-sto")({
   head: () => ({
@@ -43,6 +46,46 @@ const faq = [
 ];
 
 function StoPage() {
+  const [company, setCompany] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [comments, setComments] = useState("");
+  const [agree, setAgree] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [done, setDone] = useState(false);
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (submitting) return;
+    if (!agree) {
+      toast.error("Подтвердите согласие на обработку персональных данных.");
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const message = [
+        company ? `Компания: ${company}` : null,
+        comments ? `Комментарии: ${comments}` : null,
+      ].filter(Boolean).join("\n");
+      await submitLead({
+        source: "contacts",
+        name,
+        phone,
+        email: email || null,
+        message: message || "Заявка от СТО",
+      });
+      setDone(true);
+      toast.success("Заявка отправлена. Менеджер свяжется в течение рабочего дня.");
+      setCompany(""); setName(""); setPhone(""); setEmail(""); setComments(""); setAgree(false);
+    } catch (err) {
+      console.error(err);
+      toast.error("Не удалось отправить заявку. Попробуйте ещё раз.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <Layout>
       {/* Hero */}
@@ -141,15 +184,24 @@ function StoPage() {
             <h2 className="text-3xl font-display font-bold">Готовы работать стабильно?</h2>
             <p className="mt-3 text-foreground/75">Заполните форму — пришлём прайс и условия в течение рабочего дня.</p>
           </div>
-          <form className="grid gap-3">
-            <input placeholder="Компания" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
-            <input placeholder="Контактное лицо" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
+          <form onSubmit={onSubmit} className="grid gap-3">
+            <input value={company} onChange={(e) => setCompany(e.target.value)} maxLength={120} placeholder="Компания" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
+            <input value={name} onChange={(e) => setName(e.target.value)} required maxLength={120} placeholder="Контактное лицо" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
             <div className="grid grid-cols-2 gap-3">
-              <input type="tel" placeholder="Телефон" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
-              <input type="email" placeholder="Email" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
+              <input value={phone} onChange={(e) => setPhone(e.target.value)} required maxLength={40} type="tel" placeholder="Телефон" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
+              <input value={email} onChange={(e) => setEmail(e.target.value)} maxLength={200} type="email" placeholder="Email" className="h-12 px-4 rounded-xl border border-border bg-background outline-none focus:border-forest" />
             </div>
-            <textarea placeholder="Комментарии" rows={4} className="px-4 py-3 rounded-xl border border-border bg-background outline-none focus:border-forest resize-none" />
-            <button type="button" className="h-12 rounded-xl surface-forest font-semibold">Получить коммерческое предложение</button>
+            <textarea value={comments} onChange={(e) => setComments(e.target.value)} maxLength={1500} placeholder="Комментарии" rows={4} className="px-4 py-3 rounded-xl border border-border bg-background outline-none focus:border-forest resize-none" />
+            <label className="flex items-start gap-2 text-xs text-foreground/70 leading-snug">
+              <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} required className="mt-0.5 shrink-0" />
+              <span>
+                Я согласен на обработку персональных данных согласно{" "}
+                <Link to="/privacy-policy" className="underline hover:text-forest">Политике</Link>.
+              </span>
+            </label>
+            <button type="submit" disabled={submitting} className="h-12 rounded-xl surface-forest font-semibold inline-flex items-center justify-center gap-2 disabled:opacity-60">
+              {submitting ? (<><Loader2 size={16} className="animate-spin" /> Отправляем…</>) : done ? (<><CheckCircle2 size={16} /> Отправлено</>) : "Получить коммерческое предложение"}
+            </button>
           </form>
         </div>
       </section>

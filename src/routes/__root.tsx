@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { CartProvider } from "@/lib/cart-store";
 import { CartDrawer } from "@/components/site/CartDrawer";
+import { CookieBanner } from "@/components/site/CookieBanner";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -127,6 +128,7 @@ function RootComponent() {
       <CartProvider>
         <Outlet />
         <CartDrawer />
+        <CookieBanner />
         <Toaster position="top-right" />
       </CartProvider>
     </QueryClientProvider>

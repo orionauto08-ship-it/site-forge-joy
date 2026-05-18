@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { useCart } from "@/lib/cart-store";
 import { Minus, Plus, Trash2, ShoppingBag, CheckCircle2, Loader2 } from "lucide-react";
@@ -11,10 +12,15 @@ export function CartDrawer() {
   const [submitting, setSubmitting] = useState(false);
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
+  const [agree, setAgree] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (submitting) return;
+    if (!agree) {
+      toast.error("Подтвердите согласие на обработку персональных данных.");
+      return;
+    }
     setSubmitting(true);
     try {
       await submitLead({
@@ -36,6 +42,7 @@ export function CartDrawer() {
         setSubmitted(false);
         setPhone("");
         setName("");
+        setAgree(false);
         close();
       }, 2200);
     } catch (err) {
@@ -140,6 +147,22 @@ export function CartDrawer() {
                 required
                 className="w-full h-11 px-4 rounded-xl border border-border bg-background focus:outline-none focus:border-forest"
               />
+              <label className="flex items-start gap-2 text-[11px] text-foreground/70 leading-snug">
+                <input
+                  type="checkbox"
+                  checked={agree}
+                  onChange={(e) => setAgree(e.target.checked)}
+                  required
+                  className="mt-0.5 shrink-0"
+                />
+                <span>
+                  Я согласен на обработку персональных данных согласно{" "}
+                  <Link to="/privacy-policy" className="underline hover:text-forest" onClick={() => close()}>
+                    Политике
+                  </Link>
+                  .
+                </span>
+              </label>
               <button
                 type="submit"
                 disabled={submitting}
