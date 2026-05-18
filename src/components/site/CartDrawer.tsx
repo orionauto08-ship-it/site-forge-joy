@@ -87,7 +87,7 @@ export function CartDrawer() {
                         <Plus size={14} />
                       </button>
                     </div>
-                    <div className="font-display font-bold">{(product.price * qty).toLocaleString("ru-BY")} BYN</div>
+                    <div className="font-display font-bold">{product.price != null ? `${(product.price * qty).toLocaleString("ru-BY")} BYN` : "По запросу"}</div>
                   </div>
                 </div>
               ))}
