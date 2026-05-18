@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as PartsRouteImport } from './routes/parts'
 import { Route as ForStoRouteImport } from './routes/for-sto'
 import { Route as DiamondProtechRouteImport } from './routes/diamond-protech'
+import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactsRouteImport } from './routes/contacts'
 import { Route as CarsOrderRouteImport } from './routes/cars-order'
 import { Route as AboutRouteImport } from './routes/about'
@@ -31,6 +32,11 @@ const ForStoRoute = ForStoRouteImport.update({
 const DiamondProtechRoute = DiamondProtechRouteImport.update({
   id: '/diamond-protech',
   path: '/diamond-protech',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiePolicyRoute = CookiePolicyRouteImport.update({
+  id: '/cookie-policy',
+  path: '/cookie-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactsRoute = ContactsRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/cars-order': typeof CarsOrderRoute
   '/contacts': typeof ContactsRoute
+  '/cookie-policy': typeof CookiePolicyRoute
   '/diamond-protech': typeof DiamondProtechRoute
   '/for-sto': typeof ForStoRoute
   '/parts': typeof PartsRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/cars-order': typeof CarsOrderRoute
   '/contacts': typeof ContactsRoute
+  '/cookie-policy': typeof CookiePolicyRoute
   '/diamond-protech': typeof DiamondProtechRoute
   '/for-sto': typeof ForStoRoute
   '/parts': typeof PartsRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/cars-order': typeof CarsOrderRoute
   '/contacts': typeof ContactsRoute
+  '/cookie-policy': typeof CookiePolicyRoute
   '/diamond-protech': typeof DiamondProtechRoute
   '/for-sto': typeof ForStoRoute
   '/parts': typeof PartsRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/cars-order'
     | '/contacts'
+    | '/cookie-policy'
     | '/diamond-protech'
     | '/for-sto'
     | '/parts'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/cars-order'
     | '/contacts'
+    | '/cookie-policy'
     | '/diamond-protech'
     | '/for-sto'
     | '/parts'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/cars-order'
     | '/contacts'
+    | '/cookie-policy'
     | '/diamond-protech'
     | '/for-sto'
     | '/parts'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CarsOrderRoute: typeof CarsOrderRoute
   ContactsRoute: typeof ContactsRoute
+  CookiePolicyRoute: typeof CookiePolicyRoute
   DiamondProtechRoute: typeof DiamondProtechRoute
   ForStoRoute: typeof ForStoRoute
   PartsRoute: typeof PartsRoute
@@ -155,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/diamond-protech'
       fullPath: '/diamond-protech'
       preLoaderRoute: typeof DiamondProtechRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookie-policy': {
+      id: '/cookie-policy'
+      path: '/cookie-policy'
+      fullPath: '/cookie-policy'
+      preLoaderRoute: typeof CookiePolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contacts': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CarsOrderRoute: CarsOrderRoute,
   ContactsRoute: ContactsRoute,
+  CookiePolicyRoute: CookiePolicyRoute,
   DiamondProtechRoute: DiamondProtechRoute,
   ForStoRoute: ForStoRoute,
   PartsRoute: PartsRoute,
@@ -208,3 +229,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
