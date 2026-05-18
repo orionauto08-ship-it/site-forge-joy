@@ -17,6 +17,10 @@ export function CartDrawer() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (submitting) return;
+    if (!agree) {
+      toast.error("Подтвердите согласие на обработку персональных данных.");
+      return;
+    }
     setSubmitting(true);
     try {
       await submitLead({
