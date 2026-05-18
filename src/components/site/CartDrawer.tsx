@@ -147,6 +147,22 @@ export function CartDrawer() {
                 required
                 className="w-full h-11 px-4 rounded-xl border border-border bg-background focus:outline-none focus:border-forest"
               />
+              <label className="flex items-start gap-2 text-[11px] text-foreground/70 leading-snug">
+                <input
+                  type="checkbox"
+                  checked={agree}
+                  onChange={(e) => setAgree(e.target.checked)}
+                  required
+                  className="mt-0.5 shrink-0"
+                />
+                <span>
+                  Я согласен на обработку персональных данных согласно{" "}
+                  <Link to="/privacy-policy" className="underline hover:text-forest" onClick={() => close()}>
+                    Политике
+                  </Link>
+                  .
+                </span>
+              </label>
               <button
                 type="submit"
                 disabled={submitting}
