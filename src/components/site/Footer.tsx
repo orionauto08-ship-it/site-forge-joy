@@ -27,7 +27,7 @@ export function Footer() {
           <ul className="space-y-2 text-sm">
             <li><Link to="/about" className="hover:text-forest">О компании</Link></li>
             <li><Link to="/contacts" className="hover:text-forest">Контакты</Link></li>
-            <li><a href="#" className="hover:text-forest">Политика конфиденциальности</a></li>
+            <li><Link to="/privacy-policy" className="hover:text-forest">Политика обработки персональных данных</Link></li>
             <li><Link to="/cookie-policy" className="hover:text-forest">Политика Cookie</Link></li>
           </ul>
         </div>

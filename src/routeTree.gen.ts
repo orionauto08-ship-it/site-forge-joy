@@ -9,6 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PrivacyPolicyAppendixRouteImport } from './routes/privacy-policy-appendix'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as PartsRouteImport } from './routes/parts'
 import { Route as ForStoRouteImport } from './routes/for-sto'
 import { Route as DiamondProtechRouteImport } from './routes/diamond-protech'
@@ -19,6 +21,16 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicLeadsRouteImport } from './routes/api/public/leads'
 
+const PrivacyPolicyAppendixRoute = PrivacyPolicyAppendixRouteImport.update({
+  id: '/privacy-policy-appendix',
+  path: '/privacy-policy-appendix',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PartsRoute = PartsRouteImport.update({
   id: '/parts',
   path: '/parts',
@@ -74,6 +86,8 @@ export interface FileRoutesByFullPath {
   '/diamond-protech': typeof DiamondProtechRoute
   '/for-sto': typeof ForStoRoute
   '/parts': typeof PartsRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/privacy-policy-appendix': typeof PrivacyPolicyAppendixRoute
   '/api/public/leads': typeof ApiPublicLeadsRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +99,8 @@ export interface FileRoutesByTo {
   '/diamond-protech': typeof DiamondProtechRoute
   '/for-sto': typeof ForStoRoute
   '/parts': typeof PartsRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/privacy-policy-appendix': typeof PrivacyPolicyAppendixRoute
   '/api/public/leads': typeof ApiPublicLeadsRoute
 }
 export interface FileRoutesById {
@@ -97,6 +113,8 @@ export interface FileRoutesById {
   '/diamond-protech': typeof DiamondProtechRoute
   '/for-sto': typeof ForStoRoute
   '/parts': typeof PartsRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/privacy-policy-appendix': typeof PrivacyPolicyAppendixRoute
   '/api/public/leads': typeof ApiPublicLeadsRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +128,8 @@ export interface FileRouteTypes {
     | '/diamond-protech'
     | '/for-sto'
     | '/parts'
+    | '/privacy-policy'
+    | '/privacy-policy-appendix'
     | '/api/public/leads'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +141,8 @@ export interface FileRouteTypes {
     | '/diamond-protech'
     | '/for-sto'
     | '/parts'
+    | '/privacy-policy'
+    | '/privacy-policy-appendix'
     | '/api/public/leads'
   id:
     | '__root__'
@@ -132,6 +154,8 @@ export interface FileRouteTypes {
     | '/diamond-protech'
     | '/for-sto'
     | '/parts'
+    | '/privacy-policy'
+    | '/privacy-policy-appendix'
     | '/api/public/leads'
   fileRoutesById: FileRoutesById
 }
@@ -144,11 +168,27 @@ export interface RootRouteChildren {
   DiamondProtechRoute: typeof DiamondProtechRoute
   ForStoRoute: typeof ForStoRoute
   PartsRoute: typeof PartsRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  PrivacyPolicyAppendixRoute: typeof PrivacyPolicyAppendixRoute
   ApiPublicLeadsRoute: typeof ApiPublicLeadsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/privacy-policy-appendix': {
+      id: '/privacy-policy-appendix'
+      path: '/privacy-policy-appendix'
+      fullPath: '/privacy-policy-appendix'
+      preLoaderRoute: typeof PrivacyPolicyAppendixRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/parts': {
       id: '/parts'
       path: '/parts'
@@ -224,8 +264,20 @@ const rootRouteChildren: RootRouteChildren = {
   DiamondProtechRoute: DiamondProtechRoute,
   ForStoRoute: ForStoRoute,
   PartsRoute: PartsRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  PrivacyPolicyAppendixRoute: PrivacyPolicyAppendixRoute,
   ApiPublicLeadsRoute: ApiPublicLeadsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
