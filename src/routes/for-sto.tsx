@@ -46,6 +46,46 @@ const faq = [
 ];
 
 function StoPage() {
+  const [company, setCompany] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [comments, setComments] = useState("");
+  const [agree, setAgree] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [done, setDone] = useState(false);
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (submitting) return;
+    if (!agree) {
+      toast.error("Подтвердите согласие на обработку персональных данных.");
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const message = [
+        company ? `Компания: ${company}` : null,
+        comments ? `Комментарии: ${comments}` : null,
+      ].filter(Boolean).join("\n");
+      await submitLead({
+        source: "contacts",
+        name,
+        phone,
+        email: email || null,
+        message: message || "Заявка от СТО",
+      });
+      setDone(true);
+      toast.success("Заявка отправлена. Менеджер свяжется в течение рабочего дня.");
+      setCompany(""); setName(""); setPhone(""); setEmail(""); setComments(""); setAgree(false);
+    } catch (err) {
+      console.error(err);
+      toast.error("Не удалось отправить заявку. Попробуйте ещё раз.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <Layout>
       {/* Hero */}
