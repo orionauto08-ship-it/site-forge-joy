@@ -1,4 +1,4 @@
-export type LeadSource = "cart" | "contacts" | "parts";
+export type LeadSource = "cart" | "contacts" | "parts" | "cars";
 
 export interface LeadItem {
   title: string;

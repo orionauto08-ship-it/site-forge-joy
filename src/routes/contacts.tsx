@@ -2,10 +2,22 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Layout } from "@/components/site/Layout";
 import { Phone, Mail, MapPin, MessageCircle, Loader2, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
-import { submitLead } from "@/lib/submit-lead";
+import { submitLead, type LeadSource } from "@/lib/submit-lead";
 import { toast } from "sonner";
 
+type ContactsSearch = {
+  source?: LeadSource;
+  model?: string;
+};
+
 export const Route = createFileRoute("/contacts")({
+  validateSearch: (search: Record<string, unknown>): ContactsSearch => {
+    const src = search.source;
+    const allowed: LeadSource[] = ["cart", "contacts", "parts", "cars"];
+    const source = typeof src === "string" && (allowed as string[]).includes(src) ? (src as LeadSource) : undefined;
+    const model = typeof search.model === "string" ? search.model.slice(0, 200) : undefined;
+    return { source, model };
+  },
   head: () => ({
     meta: [
       { title: "Контакты — Орионавто, Минск" },
@@ -79,10 +91,14 @@ function ContactsPage() {
 }
 
 function ContactForm() {
+  const { source, model } = Route.useSearch();
+  const leadSource: LeadSource = source ?? "contacts";
+  const initialMessage = model ? `Интересует автомобиль: ${model}` : "";
+
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(initialMessage);
   const [agree, setAgree] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
@@ -97,7 +113,7 @@ function ContactForm() {
     setSubmitting(true);
     try {
       await submitLead({
-        source: "contacts",
+        source: leadSource,
         name,
         phone,
         email: email || null,

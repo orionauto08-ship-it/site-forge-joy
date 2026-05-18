@@ -129,12 +129,14 @@ function CarsPage() {
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 to="/contacts"
+                search={{ source: "cars" }}
                 className="inline-flex items-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold hover:opacity-95"
               >
                 Оставить заявку <ArrowRight size={18} />
               </Link>
               <Link
                 to="/contacts"
+                search={{ source: "cars" }}
                 className="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background/10 border border-background/40 backdrop-blur-sm text-background font-semibold hover:bg-background/20"
               >
                 Персональная консультация
@@ -161,7 +163,7 @@ function CarsPage() {
               Несколько примеров из текущих и недавних поставок. Привезём любой автомобиль премиум-сегмента — в выбранной вами комплектации.
             </p>
           </div>
-          <Link to="/contacts" className="hidden md:inline-flex items-center gap-1 text-sm font-semibold text-forest">
+          <Link to="/contacts" search={{ source: "cars" }} className="hidden md:inline-flex items-center gap-1 text-sm font-semibold text-forest">
             Запросить подбор <ArrowRight size={16} />
           </Link>
         </div>
@@ -195,6 +197,7 @@ function CarsPage() {
                 </ul>
                 <Link
                   to="/contacts"
+                  search={{ source: "cars", model: `${c.brand} ${c.model}` }}
                   className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-sand"
                 >
                   Узнать о поставке <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
