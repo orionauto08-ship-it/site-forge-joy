@@ -62,6 +62,7 @@ function formatTelegram(data: z.infer<typeof LeadSchema>) {
     cart: "🛒 Корзина",
     contacts: "✉️ Форма контактов",
     parts: "🔧 Запчасти",
+    cars: "🚘 Автомобили",
   };
   const lines = [
     `<b>Новая заявка — ${sourceMap[data.source] ?? data.source}</b>`,
