@@ -127,6 +127,7 @@ function RootComponent() {
       <CartProvider>
         <Outlet />
         <CartDrawer />
+        <Toaster position="top-right" />
       </CartProvider>
     </QueryClientProvider>
   );
