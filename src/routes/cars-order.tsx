@@ -163,7 +163,7 @@ function CarsPage() {
               Несколько примеров из текущих и недавних поставок. Привезём любой автомобиль премиум-сегмента — в выбранной вами комплектации.
             </p>
           </div>
-          <Link to="/contacts" className="hidden md:inline-flex items-center gap-1 text-sm font-semibold text-forest">
+          <Link to="/contacts" search={{ source: "cars" }} className="hidden md:inline-flex items-center gap-1 text-sm font-semibold text-forest">
             Запросить подбор <ArrowRight size={16} />
           </Link>
         </div>
