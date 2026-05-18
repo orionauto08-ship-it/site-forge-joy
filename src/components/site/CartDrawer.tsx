@@ -1,25 +1,49 @@
 import { useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { useCart } from "@/lib/cart-store";
-import { Minus, Plus, Trash2, ShoppingBag, CheckCircle2 } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag, CheckCircle2, Loader2 } from "lucide-react";
+import { submitLead } from "@/lib/submit-lead";
+import { toast } from "sonner";
 
 export function CartDrawer() {
   const { items, isOpen, close, setQty, remove, total, count, clear } = useCart();
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Демо: имитация отправки заявки
-    setSubmitted(true);
-    setTimeout(() => {
-      clear();
-      setSubmitted(false);
-      setPhone("");
-      setName("");
-      close();
-    }, 2200);
+    if (submitting) return;
+    setSubmitting(true);
+    try {
+      await submitLead({
+        source: "cart",
+        name,
+        phone,
+        total_amount: total || null,
+        items: items.map((i) => ({
+          title: i.product.title,
+          brand: i.product.brand ?? null,
+          oem: i.product.oem ?? null,
+          qty: i.qty,
+          price: i.product.price ?? null,
+        })),
+      });
+      setSubmitted(true);
+      setTimeout(() => {
+        clear();
+        setSubmitted(false);
+        setPhone("");
+        setName("");
+        close();
+      }, 2200);
+    } catch (err) {
+      console.error(err);
+      toast.error("Не удалось отправить заявку. Попробуйте ещё раз или позвоните нам.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
