@@ -129,12 +129,14 @@ function CarsPage() {
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 to="/contacts"
+                search={{ source: "cars" }}
                 className="inline-flex items-center gap-2 h-12 px-6 rounded-xl surface-forest font-semibold hover:opacity-95"
               >
                 Оставить заявку <ArrowRight size={18} />
               </Link>
               <Link
                 to="/contacts"
+                search={{ source: "cars" }}
                 className="inline-flex items-center gap-2 h-12 px-6 rounded-xl bg-background/10 border border-background/40 backdrop-blur-sm text-background font-semibold hover:bg-background/20"
               >
                 Персональная консультация
