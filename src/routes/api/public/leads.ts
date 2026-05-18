@@ -104,39 +104,50 @@ export const Route = createFileRoute("/api/public/leads")({
         }
         const data = parsed.data;
 
-        const supabase = createClient(
-          process.env.SUPABASE_URL!,
-          process.env.SUPABASE_SERVICE_ROLE_KEY!,
-          { auth: { autoRefreshToken: false, persistSession: false } },
-        );
-
         const userAgent = request.headers.get("user-agent")?.slice(0, 500) ?? null;
 
-        const { data: inserted, error } = await supabase
-          .from("leads")
-          .insert({
-            source: data.source,
-            name: data.name,
-            phone: data.phone,
-            email: data.email || null,
-            message: data.message || null,
-            items: data.items ?? null,
-            total_amount: data.total_amount ?? null,
-            page_url: data.page_url ?? null,
-            user_agent: userAgent,
-          })
-          .select("id")
-          .single();
-
-        if (error) {
-          console.error("Lead insert failed", error);
-          return Response.json({ error: "Failed to save lead" }, { status: 500 });
+        // 1) Telegram first — независимо от БД
+        try {
+          await sendTelegram(formatTelegram(data));
+        } catch (e) {
+          console.error("Telegram send failed", e);
         }
 
-        // Fire-and-forget Telegram notification
-        sendTelegram(formatTelegram(data)).catch((e) => console.error(e));
+        // 2) Пробуем сохранить в БД, но ошибка не валит заявку
+        let insertedId: string | null = null;
+        try {
+          const supabase = createClient(
+            process.env.SUPABASE_URL!,
+            process.env.SUPABASE_SERVICE_ROLE_KEY!,
+            { auth: { autoRefreshToken: false, persistSession: false } },
+          );
 
-        return Response.json({ ok: true, id: inserted.id });
+          const { data: inserted, error } = await supabase
+            .from("leads")
+            .insert({
+              source: data.source,
+              name: data.name,
+              phone: data.phone,
+              email: data.email || null,
+              message: data.message || null,
+              items: data.items ?? null,
+              total_amount: data.total_amount ?? null,
+              page_url: data.page_url ?? null,
+              user_agent: userAgent,
+            })
+            .select("id")
+            .single();
+
+          if (error) {
+            console.error("Lead insert failed", error);
+          } else {
+            insertedId = inserted.id as string;
+          }
+        } catch (e) {
+          console.error("Lead DB error", e);
+        }
+
+        return Response.json({ ok: true, id: insertedId });
       },
     },
   },
