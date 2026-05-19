@@ -6,6 +6,11 @@ import type { Product } from "./parts-catalog";
 let cache: { data: Product[]; ts: number } | null = null;
 const TTL_MS = 5 * 60 * 1000;
 
+export function clearPartsCache() {
+  cache = null;
+}
+
+
 export const getParts = createServerFn({ method: "GET" }).handler(async (): Promise<Product[]> => {
   if (cache && Date.now() - cache.ts < TTL_MS) return cache.data;
 
