@@ -5,10 +5,10 @@ import { useCart } from "@/lib/cart-store";
 import logo from "@/assets/logo.png";
 
 const nav = [
+  { to: "/cars-order", label: "Авто под заказ" },
   { to: "/parts", label: "Запчасти" },
   { to: "/diamond-protech", label: "Diamond ProTech" },
   { to: "/for-sto", label: "Для СТО" },
-  { to: "/cars-order", label: "Авто под заказ" },
   { to: "/about", label: "О компании" },
   { to: "/contacts", label: "Контакты" },
 ] as const;
