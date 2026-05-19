@@ -59,6 +59,51 @@ export type Database = {
         }
         Relationships: []
       }
+      parts: {
+        Row: {
+          brand: string
+          category: string
+          created_at: string
+          fits: string
+          id: string
+          oem: string
+          oem_eng: string | null
+          price: number | null
+          sort_order: number
+          stock: Database["public"]["Enums"]["part_stock"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          brand?: string
+          category?: string
+          created_at?: string
+          fits?: string
+          id?: string
+          oem?: string
+          oem_eng?: string | null
+          price?: number | null
+          sort_order?: number
+          stock?: Database["public"]["Enums"]["part_stock"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          brand?: string
+          category?: string
+          created_at?: string
+          fits?: string
+          id?: string
+          oem?: string
+          oem_eng?: string | null
+          price?: number | null
+          sort_order?: number
+          stock?: Database["public"]["Enums"]["part_stock"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
@@ -94,6 +139,7 @@ export type Database = {
       app_role: "admin" | "manager" | "user"
       lead_source: "cart" | "contacts" | "parts" | "cars"
       lead_status: "new" | "in_progress" | "closed"
+      part_stock: "in_stock" | "on_order"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -224,6 +270,7 @@ export const Constants = {
       app_role: ["admin", "manager", "user"],
       lead_source: ["cart", "contacts", "parts", "cars"],
       lead_status: ["new", "in_progress", "closed"],
+      part_stock: ["in_stock", "on_order"],
     },
   },
 } as const
